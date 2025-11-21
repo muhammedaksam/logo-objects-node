@@ -13,7 +13,6 @@ A comprehensive TypeScript client SDK for the Logo Objects REST Service API. Thi
 
 - 🚀 **TypeScript Client SDK** - Type-safe API clients with full IntelliSense support
 - 🧪 **Test Suites** - Comprehensive test coverage with Jest
-- 🛠️ **Code Generation** - Automatic type and client generation from Swagger files
 - ⚡ **Performance Optimized** - Built-in retry logic, caching, and error handling
 
 ## Installation
