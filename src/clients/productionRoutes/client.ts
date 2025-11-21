@@ -1,0 +1,2106 @@
+/**
+ * @module ProductionRoutes
+ */
+
+import { BaseApiClient } from '../base';
+import { ApiResponse, ApiClientConfig, RequestQueryBodyParameter } from '../../types';
+import { buildSearchQuery } from '../../utils/queryBuilder';
+import {
+  ProductionRoutes,
+  ProductionRoutesSearchCriteria,
+  ProductionRoutesAnalytics,
+  KeyValueParameter,
+  RsRtnlinexml,
+  ResultData,
+  RsPrevoprxml,
+  ProductionRoutesQueryOptions,
+} from './types';
+
+/**
+ * @class ProductionRoutesClient
+ * @extends BaseApiClient
+ * @description
+ * The `ProductionRoutesClient` provides an interface for interacting with the `ProductionRoutes` entities of the Logo Objects API.
+ * This client includes methods for all common CRUD operations, as well as specialized methods for searching and analytics.
+ *
+ * @see {@link https://polaris.logo.cloud/docs/tiger-uyarlama-araci/detail/external%253Fcid%253Dc870583a-5e52-44e0-a311-a575a18a6088%2526link%253Df3c988fb-cd15-4596-ba1d-0b78376a530e%2526tenantId%253Dcdd87e13-3009-4dd1-a5b8-2a005c0e58da%2526hideName%253DTrue|Logo Objects REST Service} for more details.
+ *
+ * @category Üretim Tanımları
+ * @category Ana Kayıtlar
+ * @category Rotalar
+ * @category Alan Özellikleri
+ */
+export class ProductionRoutesClient extends BaseApiClient {
+  private readonly endpoint = '/productionRoutes';
+
+  /**
+   * @constructor
+   * @param {ApiClientConfig} config - The configuration for the API client.
+   */
+  constructor(config: ApiClientConfig) {
+    super(config);
+  }
+
+  /**
+   * @method getAll
+   * @description Retrieves a paginated list of `ProductionRoutes` entities.
+   * @param {ProductionRoutesQueryOptions} [options] - Optional parameters for filtering, sorting, and pagination with type-safe field names.
+   * @returns {Promise<ApiResponse<ProductionRoutes>>} A promise that resolves to a paginated API response of `ProductionRoutes` entities.
+   *
+   * @example
+   * // Retrieves the first 10 ProductionRoutes entities with specific fields
+   * const productionRoutes = await client.productionRoutes.getAll({
+   *   limit: 10,
+   *   fields: ['CODE', 'TITLE', 'STATUS'],  // ✨ Full IntelliSense for field names
+   *   sort: [['CODE', 'DATE_CREATED'], 'desc']  // ✨ Type-safe sort with direction
+   * });
+   */
+  async getAll(options?: ProductionRoutesQueryOptions): Promise<ApiResponse<ProductionRoutes>> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request('get', `${this.endpoint}${queryString ? `?${queryString}` : ''}`);
+  }
+
+  /**
+   * @method getById
+   * @description Retrieves a single `ProductionRoutes` entity by its internal reference ID.
+   * @param {number} id - The internal reference ID of the `ProductionRoutes` entity.
+   * @param {ProductionRoutesQueryOptions} [options] - Optional parameters for expanding related entities or selecting specific fields.
+   * @returns {Promise<ProductionRoutes>} A promise that resolves to the requested `ProductionRoutes` entity.
+   *
+   * @example
+   * // Retrieves a ProductionRoutes with ID 123 with specific fields
+   * const productionRoutes = await client.productionRoutes.getById(123, {
+   *   fields: ['CODE', 'TITLE', 'STATUS']  // ✨ Full IntelliSense for field names
+   * });
+   */
+  async getById(id: number, options?: ProductionRoutesQueryOptions): Promise<ProductionRoutes> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request('get', `${this.endpoint}/${id}${queryString ? `?${queryString}` : ''}`);
+  }
+
+  /**
+   * @method create
+   * @description Creates a new `ProductionRoutes` entity.
+   * @param {Partial<ProductionRoutes>} data - The data for the new `ProductionRoutes` entity.
+   * @returns {Promise<ProductionRoutes>} A promise that resolves to the newly created `ProductionRoutes` entity.
+   *
+   * @example
+   * // Creates a new ProductionRoutes
+   * const newProductionRoutes = await client.productionRoutes.create({
+   *   name: 'New ProductionRoutes',
+   *   // ... other properties
+   * });
+   */
+  async create(data: Partial<ProductionRoutes>): Promise<ProductionRoutes> {
+    return this.request('post', this.endpoint, data);
+  }
+
+  /**
+   * @method update
+   * @description Updates an existing `ProductionRoutes` entity.
+   * @param {number} id - The internal reference ID of the `ProductionRoutes` entity to update.
+   * @param {Partial<ProductionRoutes>} data - The updated data for the `ProductionRoutes` entity.
+   * @returns {Promise<ProductionRoutes>} A promise that resolves to the updated `ProductionRoutes` entity.
+   *
+   * @example
+   * // Updates the name of a ProductionRoutes with ID 123
+   * const updatedProductionRoutes = await client.productionRoutes.update(123, {
+   *   name: 'Updated ProductionRoutes Name',
+   * });
+   */
+  async update(id: number, data: Partial<ProductionRoutes>): Promise<ProductionRoutes> {
+    return this.request('put', `${this.endpoint}/${id}`, data);
+  }
+
+  /**
+   * @method patch
+   * @description Partially updates a `ProductionRoutes` entity.
+   * @param {number} id - The internal reference ID of the `ProductionRoutes` entity to update.
+   * @param {Partial<ProductionRoutes>} data - The partial data to update.
+   * @returns {Promise<ProductionRoutes>} A promise that resolves to the updated `ProductionRoutes` entity.
+   *
+   * @example
+   * // Partially updates a ProductionRoutes with ID 123
+   * const patchedProductionRoutes = await client.productionRoutes.patch(123, {
+   *   status: 'inactive',
+   * });
+   */
+  async patch(id: number, data: Partial<ProductionRoutes>): Promise<ProductionRoutes> {
+    return this.request('patch', `${this.endpoint}/${id}`, data);
+  }
+
+  /**
+   * @method delete
+   * @description Deletes a `ProductionRoutes` entity by its internal reference ID.
+   * @param {number} id - The internal reference ID of the `ProductionRoutes` entity to delete.
+   * @returns {Promise<ProductionRoutes>} A promise that resolves when the entity is successfully deleted.
+   *
+   * @example
+   * // Deletes a ProductionRoutes with ID 123
+   * await client.productionRoutes.delete(123);
+   */
+  async delete(id: number): Promise<ProductionRoutes> {
+    return this.request('delete', `${this.endpoint}/${id}`);
+  }
+
+  /**
+   * @method search
+   * @description Searches for `ProductionRoutes` entities based on a set of criteria.
+   * @param {ProductionRoutesSearchCriteria} criteria - The search criteria.
+   * @returns {Promise<ApiResponse<ProductionRoutes>>} A promise that resolves to a paginated API response of matching `ProductionRoutes` entities.
+   *
+   * @example
+   * // Searches for ProductionRoutes entities with a specific code
+   * const results = await client.productionRoutes.search({ code: '123' });
+   */
+  async search(criteria: ProductionRoutesSearchCriteria): Promise<ApiResponse<ProductionRoutes>> {
+    const query = this.buildSearchQuery(criteria);
+    return this.getAll({ q: query });
+  }
+
+  /**
+   * @method buildQuery
+   * @description Builds a custom query string for advanced filtering.
+   * @param {string[]} conditions - An array of OData query conditions.
+   * @returns {Promise<ApiResponse<ProductionRoutes>>} A promise that resolves to a paginated API response of matching `ProductionRoutes` entities.
+   *
+   * @example
+   * // Builds a complex query
+   * const results = await client.productionRoutes.buildQuery([
+   *   "name like '%test%'",
+   *   "status eq 'active'"
+   * ]);
+   */
+  async buildQuery(conditions: string[]): Promise<ApiResponse<ProductionRoutes>> {
+    const query = conditions.join(' and ');
+    return this.getAll({ q: query });
+  }
+
+  /**
+   * @method deleteCampaignV1
+   * @description Corresponds to `GET /productionRoutes/{id}/DeleteCampaign`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async deleteCampaignV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/DeleteCampaign${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method deleteCampaignV1Post
+   * @description Corresponds to `POST /productionRoutes/DeleteCampaign`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async deleteCampaignV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/DeleteCampaign`, data);
+  }
+
+  /**
+   * @method setClientInfoV1
+   * @description Corresponds to `GET /productionRoutes/{id}/SetClientInfo`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async setClientInfoV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/SetClientInfo${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method setClientInfoV1Post
+   * @description Corresponds to `POST /productionRoutes/SetClientInfo`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async setClientInfoV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/SetClientInfo`, data);
+  }
+
+  /**
+   * @method getRelevantCampaignsV1
+   * @description Corresponds to `GET /productionRoutes/{id}/GetRelevantCampaigns`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async getRelevantCampaignsV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/GetRelevantCampaigns${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method getRelevantCampaignsV1Post
+   * @description Corresponds to `POST /productionRoutes/GetRelevantCampaigns`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async getRelevantCampaignsV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/GetRelevantCampaigns`, data);
+  }
+
+  /**
+   * @method applyCampaignSpecificV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ApplyCampaignSpecific/{_refList}`
+   * @param {number} id - id
+   * @param {string} refList - _refList
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyCampaignSpecificV1(
+    id: number,
+    refList: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ApplyCampaignSpecific/${refList}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method applyCampaignSpecificV1Post
+   * @description Corresponds to `POST /productionRoutes/ApplyCampaignSpecific/{_refList}`
+   * @param {string} refList - _refList
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyCampaignSpecificV1Post(
+    refList: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ApplyCampaignSpecific/${refList}`, data);
+  }
+
+  /**
+   * @method importImageV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ImportImage/{_ImgPath}/{_Indx}`
+   * @param {number} id - id
+   * @param {string} ImgPath - _ImgPath
+   * @param {string} Indx - _Indx
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async importImageV1(
+    id: number,
+    ImgPath: string,
+    Indx: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ImportImage/${ImgPath}/${Indx}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method importImageV1Post
+   * @description Corresponds to `POST /productionRoutes/ImportImage/{_ImgPath}/{_Indx}`
+   * @param {string} ImgPath - _ImgPath
+   * @param {string} Indx - _Indx
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async importImageV1Post(
+    ImgPath: string,
+    Indx: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ImportImage/${ImgPath}/${Indx}`, data);
+  }
+
+  /**
+   * @method exportBase64EncodedImageV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ExportBase64EncodedImage/{_Indx}`
+   * @param {number} id - id
+   * @param {string} Indx - _Indx
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async exportBase64EncodedImageV1(
+    id: number,
+    Indx: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ExportBase64EncodedImage/${Indx}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method exportBase64EncodedImageV1Post
+   * @description Corresponds to `POST /productionRoutes/ExportBase64EncodedImage/{_Indx}`
+   * @param {string} Indx - _Indx
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async exportBase64EncodedImageV1Post(
+    Indx: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ExportBase64EncodedImage/${Indx}`, data);
+  }
+
+  /**
+   * @method importBase64EncodedImageV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ImportBase64EncodedImage/{_base64EncodedImage}/{_imageType}/{_Indx}`
+   * @param {number} id - id
+   * @param {string} base64EncodedImage - _base64EncodedImage
+   * @param {string} imageType - _imageType
+   * @param {string} Indx - _Indx
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async importBase64EncodedImageV1(
+    id: number,
+    base64EncodedImage: string,
+    imageType: string,
+    Indx: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ImportBase64EncodedImage/${base64EncodedImage}/${imageType}/${Indx}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method importBase64EncodedImageV1Post
+   * @description Corresponds to `POST /productionRoutes/ImportBase64EncodedImage/{_base64EncodedImage}/{_imageType}/{_Indx}`
+   * @param {string} base64EncodedImage - _base64EncodedImage
+   * @param {string} imageType - _imageType
+   * @param {string} Indx - _Indx
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async importBase64EncodedImageV1Post(
+    base64EncodedImage: string,
+    imageType: string,
+    Indx: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request(
+      'post',
+      `/productionRoutes/ImportBase64EncodedImage/${base64EncodedImage}/${imageType}/${Indx}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesprevOprListApplyaccdisttemplateV1
+   * @description Corresponds to `POST /productionRoutes/LINES/{id1}/PREV_OPR_LIST/ApplyAccDistTemplate/{_accDistCode}/{_lineType}/{_iDate}`
+   * @param {number} id1 - id1
+   * @param {string} accDistCode - _accDistCode
+   * @param {number} lineType - _lineType
+   * @param {number} iDate - _iDate
+   * @param {RsRtnlinexml} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListApplyaccdisttemplateV1(
+    id1: number,
+    accDistCode: string,
+    lineType: number,
+    iDate: number,
+    data: RsRtnlinexml,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/${id1}/PREV_OPR_LIST/ApplyAccDistTemplate/${accDistCode}/${lineType}/${iDate}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesprevOprListApplyaccdisttemplateV1Get
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/ApplyAccDistTemplate/{_accDistCode}/{_lineType}/{_iDate}`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {string} accDistCode - _accDistCode
+   * @param {number} lineType - _lineType
+   * @param {number} iDate - _iDate
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListApplyaccdisttemplateV1Get(
+    id: number,
+    id1: number,
+    accDistCode: string,
+    lineType: number,
+    iDate: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/ApplyAccDistTemplate/${accDistCode}/${lineType}/${iDate}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListSetlinetotalsV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/SetLineTotals/{_Indx}`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {number} Indx - _Indx
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListSetlinetotalsV1(
+    id: number,
+    id1: number,
+    Indx: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/SetLineTotals/${Indx}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListSetlinetotalsV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/{id1}/PREV_OPR_LIST/SetLineTotals/{_Indx}`
+   * @param {number} id1 - id1
+   * @param {number} Indx - _Indx
+   * @param {RsRtnlinexml} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListSetlinetotalsV1Post(
+    id1: number,
+    Indx: number,
+    data: RsRtnlinexml,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/${id1}/PREV_OPR_LIST/SetLineTotals/${Indx}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method exportToXMLV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ExportToXML/{_RootKey}/{_FileName}`
+   * @param {number} id - id
+   * @param {string} RootKey - _RootKey
+   * @param {string} FileName - _FileName
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async exportToXMLV1(
+    id: number,
+    RootKey: string,
+    FileName: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ExportToXML/${RootKey}/${FileName}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method exportToXMLV1Post
+   * @description Corresponds to `POST /productionRoutes/ExportToXML/{_RootKey}/{_FileName}`
+   * @param {string} RootKey - _RootKey
+   * @param {string} FileName - _FileName
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async exportToXMLV1Post(
+    RootKey: string,
+    FileName: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ExportToXML/${RootKey}/${FileName}`, data);
+  }
+
+  /**
+   * @method importFromXMLFileV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ImportFromXMLFile/{_RootKey}/{_FileName}`
+   * @param {number} id - id
+   * @param {string} RootKey - _RootKey
+   * @param {string} FileName - _FileName
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async importFromXMLFileV1(
+    id: number,
+    RootKey: string,
+    FileName: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ImportFromXMLFile/${RootKey}/${FileName}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method importFromXMLFileV1Post
+   * @description Corresponds to `POST /productionRoutes/ImportFromXMLFile/{_RootKey}/{_FileName}`
+   * @param {string} RootKey - _RootKey
+   * @param {string} FileName - _FileName
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async importFromXMLFileV1Post(
+    RootKey: string,
+    FileName: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ImportFromXMLFile/${RootKey}/${FileName}`, data);
+  }
+
+  /**
+   * @method createCompositeLinesV1
+   * @description Corresponds to `GET /productionRoutes/{id}/CreateCompositeLines`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async createCompositeLinesV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/CreateCompositeLines${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method createCompositeLinesV1Post
+   * @description Corresponds to `POST /productionRoutes/CreateCompositeLines`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async createCompositeLinesV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/CreateCompositeLines`, data);
+  }
+
+  /**
+   * @method formSeriLotLinesV1
+   * @description Corresponds to `GET /productionRoutes/{id}/FormSeriLotLines/{_lOMtd}`
+   * @param {number} id - id
+   * @param {number} lOMtd - _lOMtd
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async formSeriLotLinesV1(
+    id: number,
+    lOMtd: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/FormSeriLotLines/${lOMtd}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method formSeriLotLinesV1Post
+   * @description Corresponds to `POST /productionRoutes/FormSeriLotLines/{_lOMtd}`
+   * @param {number} lOMtd - _lOMtd
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async formSeriLotLinesV1Post(
+    lOMtd: number,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/FormSeriLotLines/${lOMtd}`, data);
+  }
+
+  /**
+   * @method applyCampaignV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ApplyCampaign`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyCampaignV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ApplyCampaign${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method applyCampaignV1Post
+   * @description Corresponds to `POST /productionRoutes/ApplyCampaign`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyCampaignV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ApplyCampaign`, data);
+  }
+
+  /**
+   * @method applyRePayPlnV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ApplyRePayPln/{_lineNr}/{_rePayPCode}`
+   * @param {number} id - id
+   * @param {number} lineNr - _lineNr
+   * @param {string} rePayPCode - _rePayPCode
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyRePayPlnV1(
+    id: number,
+    lineNr: number,
+    rePayPCode: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ApplyRePayPln/${lineNr}/${rePayPCode}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method applyRePayPlnV1Post
+   * @description Corresponds to `POST /productionRoutes/ApplyRePayPln/{_lineNr}/{_rePayPCode}`
+   * @param {number} lineNr - _lineNr
+   * @param {string} rePayPCode - _rePayPCode
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyRePayPlnV1Post(
+    lineNr: number,
+    rePayPCode: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ApplyRePayPln/${lineNr}/${rePayPCode}`, data);
+  }
+
+  /**
+   * @method applyRePayPlnForInvV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ApplyRePayPlnForInv/{_rePayCode}`
+   * @param {number} id - id
+   * @param {string} rePayCode - _rePayCode
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyRePayPlnForInvV1(
+    id: number,
+    rePayCode: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ApplyRePayPlnForInv/${rePayCode}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method applyRePayPlnForInvV1Post
+   * @description Corresponds to `POST /productionRoutes/ApplyRePayPlnForInv/{_rePayCode}`
+   * @param {string} rePayCode - _rePayCode
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyRePayPlnForInvV1Post(
+    rePayCode: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ApplyRePayPlnForInv/${rePayCode}`, data);
+  }
+
+  /**
+   * @method importFromXmlStrV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ImportFromXmlStr/{_RootKey}/{_XmlStr}`
+   * @param {number} id - id
+   * @param {string} RootKey - _RootKey
+   * @param {string} XmlStr - _XmlStr
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async importFromXmlStrV1(
+    id: number,
+    RootKey: string,
+    XmlStr: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ImportFromXmlStr/${RootKey}/${XmlStr}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method importFromXmlStrV1Post
+   * @description Corresponds to `POST /productionRoutes/ImportFromXmlStr/{_RootKey}/{_XmlStr}`
+   * @param {string} RootKey - _RootKey
+   * @param {string} XmlStr - _XmlStr
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async importFromXmlStrV1Post(
+    RootKey: string,
+    XmlStr: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ImportFromXmlStr/${RootKey}/${XmlStr}`, data);
+  }
+
+  /**
+   * @method exportToXmlStrV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ExportToXmlStr/{_RootKey}`
+   * @param {number} id - id
+   * @param {string} RootKey - _RootKey
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async exportToXmlStrV1(
+    id: number,
+    RootKey: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ExportToXmlStr/${RootKey}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method exportToXmlStrV1Post
+   * @description Corresponds to `POST /productionRoutes/ExportToXmlStr/{_RootKey}`
+   * @param {string} RootKey - _RootKey
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async exportToXmlStrV1Post(
+    RootKey: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ExportToXmlStr/${RootKey}`, data);
+  }
+
+  /**
+   * @method applyConditionV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ApplyCondition`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyConditionV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ApplyCondition${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method applyConditionV1Post
+   * @description Corresponds to `POST /productionRoutes/ApplyCondition`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyConditionV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ApplyCondition`, data);
+  }
+
+  /**
+   * @method exportImageV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ExportImage/{_Indx}/{_ImgPath}`
+   * @param {number} id - id
+   * @param {string} Indx - _Indx
+   * @param {string} ImgPath - _ImgPath
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async exportImageV1(
+    id: number,
+    Indx: string,
+    ImgPath: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ExportImage/${Indx}/${ImgPath}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method exportImageV1Post
+   * @description Corresponds to `POST /productionRoutes/ExportImage/{_Indx}/{_ImgPath}`
+   * @param {string} Indx - _Indx
+   * @param {string} ImgPath - _ImgPath
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async exportImageV1Post(
+    Indx: string,
+    ImgPath: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ExportImage/${Indx}/${ImgPath}`, data);
+  }
+
+  /**
+   * @method reCalculateV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ReCalculate`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async reCalculateV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ReCalculate${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method reCalculateV1Post
+   * @description Corresponds to `POST /productionRoutes/ReCalculate`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async reCalculateV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ReCalculate`, data);
+  }
+
+  /**
+   * @method fillAccCodesV1
+   * @description Corresponds to `GET /productionRoutes/{id}/FillAccCodes`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async fillAccCodesV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/FillAccCodes${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method fillAccCodesV1Post
+   * @description Corresponds to `POST /productionRoutes/FillAccCodes`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async fillAccCodesV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/FillAccCodes`, data);
+  }
+
+  /**
+   * @method applyADiscountV1
+   * @description Corresponds to `GET /productionRoutes/{id}/ApplyADiscount/{_discCode}`
+   * @param {number} id - id
+   * @param {string} discCode - _discCode
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyADiscountV1(
+    id: number,
+    discCode: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/ApplyADiscount/${discCode}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method applyADiscountV1Post
+   * @description Corresponds to `POST /productionRoutes/ApplyADiscount/{_discCode}`
+   * @param {string} discCode - _discCode
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async applyADiscountV1Post(
+    discCode: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/ApplyADiscount/${discCode}`, data);
+  }
+
+  /**
+   * @method setDefIntValueV1
+   * @description Corresponds to `GET /productionRoutes/{id}/SetDefIntValue/{_fldName}/{_fType}/{_fSz}/{_Value}`
+   * @param {number} id - id
+   * @param {string} fldName - _fldName
+   * @param {number} fType - _fType
+   * @param {number} fSz - _fSz
+   * @param {number} Value - _Value
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async setDefIntValueV1(
+    id: number,
+    fldName: string,
+    fType: number,
+    fSz: number,
+    Value: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/SetDefIntValue/${fldName}/${fType}/${fSz}/${Value}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method setDefIntValueV1Post
+   * @description Corresponds to `POST /productionRoutes/SetDefIntValue/{_fldName}/{_fType}/{_fSz}/{_Value}`
+   * @param {string} fldName - _fldName
+   * @param {number} fType - _fType
+   * @param {number} fSz - _fSz
+   * @param {number} Value - _Value
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async setDefIntValueV1Post(
+    fldName: string,
+    fType: number,
+    fSz: number,
+    Value: number,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request(
+      'post',
+      `/productionRoutes/SetDefIntValue/${fldName}/${fType}/${fSz}/${Value}`,
+      data
+    );
+  }
+
+  /**
+   * @method equalizePayAmntV1
+   * @description Corresponds to `GET /productionRoutes/{id}/EqualizePayAmnt`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async equalizePayAmntV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/EqualizePayAmnt${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method equalizePayAmntV1Post
+   * @description Corresponds to `POST /productionRoutes/EqualizePayAmnt`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async equalizePayAmntV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/EqualizePayAmnt`, data);
+  }
+
+  /**
+   * @method addSeriLotsForKsV1
+   * @description Corresponds to `GET /productionRoutes/{id}/AddSeriLotsForKs/{_slCode}/{_amount}/{_IOMtd}`
+   * @param {number} id - id
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {number} IOMtd - _IOMtd
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async addSeriLotsForKsV1(
+    id: number,
+    slCode: string,
+    amount: number,
+    IOMtd: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/AddSeriLotsForKs/${slCode}/${amount}/${IOMtd}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method addSeriLotsForKsV1Post
+   * @description Corresponds to `POST /productionRoutes/AddSeriLotsForKs/{_slCode}/{_amount}/{_IOMtd}`
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {number} IOMtd - _IOMtd
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async addSeriLotsForKsV1Post(
+    slCode: string,
+    amount: number,
+    IOMtd: number,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request(
+      'post',
+      `/productionRoutes/AddSeriLotsForKs/${slCode}/${amount}/${IOMtd}`,
+      data
+    );
+  }
+
+  /**
+   * @method fillSMMACCCodesV1
+   * @description Corresponds to `GET /productionRoutes/{id}/FillSMMACCCodes`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async fillSMMACCCodesV1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/FillSMMACCCodes${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method fillSMMACCCodesV1Post
+   * @description Corresponds to `POST /productionRoutes/FillSMMACCCodes`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async fillSMMACCCodesV1Post(data: Partial<ProductionRoutes>): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/FillSMMACCCodes`, data);
+  }
+
+  /**
+   * @method attachADespatchByLRefV1
+   * @description Corresponds to `GET /productionRoutes/{id}/AttachADespatchByLRef/{_dispref}`
+   * @param {number} id - id
+   * @param {number} dispref - _dispref
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async attachADespatchByLRefV1(
+    id: number,
+    dispref: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/AttachADespatchByLRef/${dispref}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method attachADespatchByLRefV1Post
+   * @description Corresponds to `POST /productionRoutes/AttachADespatchByLRef/{_dispref}`
+   * @param {number} dispref - _dispref
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async attachADespatchByLRefV1Post(
+    dispref: number,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/AttachADespatchByLRef/${dispref}`, data);
+  }
+
+  /**
+   * @method attachADespatchByFicheNoV1
+   * @description Corresponds to `GET /productionRoutes/{id}/AttachADespatchByFicheNo/{_dispFicheNo}`
+   * @param {number} id - id
+   * @param {string} dispFicheNo - _dispFicheNo
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async attachADespatchByFicheNoV1(
+    id: number,
+    dispFicheNo: string,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/AttachADespatchByFicheNo/${dispFicheNo}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method attachADespatchByFicheNoV1Post
+   * @description Corresponds to `POST /productionRoutes/AttachADespatchByFicheNo/{_dispFicheNo}`
+   * @param {string} dispFicheNo - _dispFicheNo
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async attachADespatchByFicheNoV1Post(
+    dispFicheNo: string,
+    data: Partial<ProductionRoutes>
+  ): Promise<KeyValueParameter[]> {
+    return this.request('post', `/productionRoutes/AttachADespatchByFicheNo/${dispFicheNo}`, data);
+  }
+
+  /**
+   * @method postReadWithBodyParametersV1
+   * @description Corresponds to `POST /productionRoutes/readwithbodyparamters`
+   * @param {RequestQueryBodyParameter} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<ProductionRoutes>} A promise resolving to the response.
+   */
+  async postReadWithBodyParametersV1(
+    data: RequestQueryBodyParameter,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<ProductionRoutes> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/readwithbodyparamters${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method postReadByIdWithBodyParametersV1
+   * @description Corresponds to `POST /productionRoutes/{id}/readwithbodyparamters`
+   * @param {number} id - id
+   * @param {RequestQueryBodyParameter} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<ProductionRoutes>} A promise resolving to the response.
+   */
+  async postReadByIdWithBodyParametersV1(
+    id: number,
+    data: RequestQueryBodyParameter,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<ProductionRoutes> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/${id}/readwithbodyparamters${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method getLINESV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<ResultData>} A promise resolving to the response.
+   */
+  async getLINESV1(id: number, options?: ProductionRoutesQueryOptions): Promise<ResultData> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method getLINESByIdV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{idt}`
+   * @param {number} id - id
+   * @param {number} idt - idt
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<RsRtnlinexml>} A promise resolving to the response.
+   */
+  async getLINESByIdV1(
+    id: number,
+    idt: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<RsRtnlinexml> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${idt}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesAppendline2V1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/AppendLine2`
+   * @param {number} id - id
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesAppendline2V1(
+    id: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/AppendLine2${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesAppendline2V1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/AppendLine2`
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesAppendline2V1Post(
+    data: Partial<ProductionRoutes>,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/AppendLine2${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesAddserilotsV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/AddSeriLots/{_slCode}/{_amount}/{_locCode}/{_lOMtd}/{_ExpDate}`
+   * @param {number} id - id
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {string} locCode - _locCode
+   * @param {number} lOMtd - _lOMtd
+   * @param {number} ExpDate - _ExpDate
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesAddserilotsV1(
+    id: number,
+    slCode: string,
+    amount: number,
+    locCode: string,
+    lOMtd: number,
+    ExpDate: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/AddSeriLots/${slCode}/${amount}/${locCode}/${lOMtd}/${ExpDate}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesAddserilotsV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/AddSeriLots/{_slCode}/{_amount}/{_locCode}/{_lOMtd}/{_ExpDate}`
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {string} locCode - _locCode
+   * @param {number} lOMtd - _lOMtd
+   * @param {number} ExpDate - _ExpDate
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesAddserilotsV1Post(
+    slCode: string,
+    amount: number,
+    locCode: string,
+    lOMtd: number,
+    ExpDate: number,
+    data: Partial<ProductionRoutes>,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/AddSeriLots/${slCode}/${amount}/${locCode}/${lOMtd}/${ExpDate}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesGetstocklinepriceV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/GetStockLinePrice/{_prcTyp}/{_Indx}`
+   * @param {number} id - id
+   * @param {number} prcTyp - _prcTyp
+   * @param {number} Indx - _Indx
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesGetstocklinepriceV1(
+    id: number,
+    prcTyp: number,
+    Indx: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/GetStockLinePrice/${prcTyp}/${Indx}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesGetstocklinepriceV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/GetStockLinePrice/{_prcTyp}/{_Indx}`
+   * @param {number} prcTyp - _prcTyp
+   * @param {number} Indx - _Indx
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesGetstocklinepriceV1Post(
+    prcTyp: number,
+    Indx: number,
+    data: Partial<ProductionRoutes>,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/GetStockLinePrice/${prcTyp}/${Indx}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesAddline2V1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/AddLine2/{_index}`
+   * @param {number} id - id
+   * @param {number} index - _index
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesAddline2V1(
+    id: number,
+    index: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/AddLine2/${index}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesAddline2V1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/AddLine2/{_index}`
+   * @param {number} index - _index
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesAddline2V1Post(
+    index: number,
+    data: Partial<ProductionRoutes>,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/AddLine2/${index}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesAppendserilotsV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/AppendSeriLots/{_slCode}/{_amount}/{_Indx}/{_locCode}/{_lOMtd}`
+   * @param {number} id - id
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {number} Indx - _Indx
+   * @param {string} locCode - _locCode
+   * @param {number} lOMtd - _lOMtd
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesAppendserilotsV1(
+    id: number,
+    slCode: string,
+    amount: number,
+    Indx: number,
+    locCode: string,
+    lOMtd: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/AppendSeriLots/${slCode}/${amount}/${Indx}/${locCode}/${lOMtd}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesAppendserilotsV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/AppendSeriLots/{_slCode}/{_amount}/{_Indx}/{_locCode}/{_lOMtd}`
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {number} Indx - _Indx
+   * @param {string} locCode - _locCode
+   * @param {number} lOMtd - _lOMtd
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesAppendserilotsV1Post(
+    slCode: string,
+    amount: number,
+    Indx: number,
+    locCode: string,
+    lOMtd: number,
+    data: Partial<ProductionRoutes>,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/AppendSeriLots/${slCode}/${amount}/${Indx}/${locCode}/${lOMtd}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesEqualizebalanceV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/EqualizeBalance/{_index}`
+   * @param {number} id - id
+   * @param {number} index - _index
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesEqualizebalanceV1(
+    id: number,
+    index: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/EqualizeBalance/${index}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesEqualizebalanceV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/EqualizeBalance/{_index}`
+   * @param {number} index - _index
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesEqualizebalanceV1Post(
+    index: number,
+    data: Partial<ProductionRoutes>,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/EqualizeBalance/${index}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesApplyaccdisttemplateV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/ApplyAccDistTemplate/{_accDistCode}/{_lineType}/{_iDate}`
+   * @param {number} id - id
+   * @param {string} accDistCode - _accDistCode
+   * @param {number} lineType - _lineType
+   * @param {number} iDate - _iDate
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesApplyaccdisttemplateV1(
+    id: number,
+    accDistCode: string,
+    lineType: number,
+    iDate: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/ApplyAccDistTemplate/${accDistCode}/${lineType}/${iDate}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesApplyaccdisttemplateV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/ApplyAccDistTemplate/{_accDistCode}/{_lineType}/{_iDate}`
+   * @param {string} accDistCode - _accDistCode
+   * @param {number} lineType - _lineType
+   * @param {number} iDate - _iDate
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesApplyaccdisttemplateV1Post(
+    accDistCode: string,
+    lineType: number,
+    iDate: number,
+    data: Partial<ProductionRoutes>,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/ApplyAccDistTemplate/${accDistCode}/${lineType}/${iDate}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesSetlinetotalsV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/SetLineTotals/{_Indx}`
+   * @param {number} id - id
+   * @param {number} Indx - _Indx
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesSetlinetotalsV1(
+    id: number,
+    Indx: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/SetLineTotals/${Indx}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesSetlinetotalsV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/SetLineTotals/{_Indx}`
+   * @param {number} Indx - _Indx
+   * @param {Partial<ProductionRoutes>} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesSetlinetotalsV1Post(
+    Indx: number,
+    data: Partial<ProductionRoutes>,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/SetLineTotals/${Indx}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method getLINESPREV_OPR_LISTV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<ResultData>} A promise resolving to the response.
+   */
+  async getLINESPREV_OPR_LISTV1(
+    id: number,
+    id1: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<ResultData> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method getLINESPREV_OPR_LISTByIdV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/{idt}`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {number} idt - idt
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<RsPrevoprxml>} A promise resolving to the response.
+   */
+  async getLINESPREV_OPR_LISTByIdV1(
+    id: number,
+    id1: number,
+    idt: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<RsPrevoprxml> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/${idt}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListAppendline2V1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/AppendLine2`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListAppendline2V1(
+    id: number,
+    id1: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/AppendLine2${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListAppendline2V1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/{id1}/PREV_OPR_LIST/AppendLine2`
+   * @param {number} id1 - id1
+   * @param {RsRtnlinexml} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListAppendline2V1Post(
+    id1: number,
+    data: RsRtnlinexml,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/${id1}/PREV_OPR_LIST/AppendLine2${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesprevOprListAddserilotsV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/AddSeriLots/{_slCode}/{_amount}/{_locCode}/{_lOMtd}/{_ExpDate}`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {string} locCode - _locCode
+   * @param {number} lOMtd - _lOMtd
+   * @param {number} ExpDate - _ExpDate
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListAddserilotsV1(
+    id: number,
+    id1: number,
+    slCode: string,
+    amount: number,
+    locCode: string,
+    lOMtd: number,
+    ExpDate: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/AddSeriLots/${slCode}/${amount}/${locCode}/${lOMtd}/${ExpDate}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListAddserilotsV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/{id1}/PREV_OPR_LIST/AddSeriLots/{_slCode}/{_amount}/{_locCode}/{_lOMtd}/{_ExpDate}`
+   * @param {number} id1 - id1
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {string} locCode - _locCode
+   * @param {number} lOMtd - _lOMtd
+   * @param {number} ExpDate - _ExpDate
+   * @param {RsRtnlinexml} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListAddserilotsV1Post(
+    id1: number,
+    slCode: string,
+    amount: number,
+    locCode: string,
+    lOMtd: number,
+    ExpDate: number,
+    data: RsRtnlinexml,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/${id1}/PREV_OPR_LIST/AddSeriLots/${slCode}/${amount}/${locCode}/${lOMtd}/${ExpDate}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesprevOprListGetstocklinepriceV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/GetStockLinePrice/{_prcTyp}/{_Indx}`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {number} prcTyp - _prcTyp
+   * @param {number} Indx - _Indx
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListGetstocklinepriceV1(
+    id: number,
+    id1: number,
+    prcTyp: number,
+    Indx: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/GetStockLinePrice/${prcTyp}/${Indx}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListGetstocklinepriceV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/{id1}/PREV_OPR_LIST/GetStockLinePrice/{_prcTyp}/{_Indx}`
+   * @param {number} id1 - id1
+   * @param {number} prcTyp - _prcTyp
+   * @param {number} Indx - _Indx
+   * @param {RsRtnlinexml} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListGetstocklinepriceV1Post(
+    id1: number,
+    prcTyp: number,
+    Indx: number,
+    data: RsRtnlinexml,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/${id1}/PREV_OPR_LIST/GetStockLinePrice/${prcTyp}/${Indx}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesprevOprListAddline2V1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/AddLine2/{_index}`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {number} index - _index
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListAddline2V1(
+    id: number,
+    id1: number,
+    index: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/AddLine2/${index}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListAddline2V1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/{id1}/PREV_OPR_LIST/AddLine2/{_index}`
+   * @param {number} id1 - id1
+   * @param {number} index - _index
+   * @param {RsRtnlinexml} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListAddline2V1Post(
+    id1: number,
+    index: number,
+    data: RsRtnlinexml,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/${id1}/PREV_OPR_LIST/AddLine2/${index}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesprevOprListAppendserilotsV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/AppendSeriLots/{_slCode}/{_amount}/{_Indx}/{_locCode}/{_lOMtd}`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {number} Indx - _Indx
+   * @param {string} locCode - _locCode
+   * @param {number} lOMtd - _lOMtd
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListAppendserilotsV1(
+    id: number,
+    id1: number,
+    slCode: string,
+    amount: number,
+    Indx: number,
+    locCode: string,
+    lOMtd: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/AppendSeriLots/${slCode}/${amount}/${Indx}/${locCode}/${lOMtd}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListAppendserilotsV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/{id1}/PREV_OPR_LIST/AppendSeriLots/{_slCode}/{_amount}/{_Indx}/{_locCode}/{_lOMtd}`
+   * @param {number} id1 - id1
+   * @param {string} slCode - _slCode
+   * @param {number} amount - _amount
+   * @param {number} Indx - _Indx
+   * @param {string} locCode - _locCode
+   * @param {number} lOMtd - _lOMtd
+   * @param {RsRtnlinexml} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListAppendserilotsV1Post(
+    id1: number,
+    slCode: string,
+    amount: number,
+    Indx: number,
+    locCode: string,
+    lOMtd: number,
+    data: RsRtnlinexml,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/${id1}/PREV_OPR_LIST/AppendSeriLots/${slCode}/${amount}/${Indx}/${locCode}/${lOMtd}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * @method linesprevOprListEqualizebalanceV1
+   * @description Corresponds to `GET /productionRoutes/{id}/LINES/{id1}/PREV_OPR_LIST/EqualizeBalance/{_index}`
+   * @param {number} id - id
+   * @param {number} id1 - id1
+   * @param {number} index - _index
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListEqualizebalanceV1(
+    id: number,
+    id1: number,
+    index: number,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'get',
+      `/productionRoutes/${id}/LINES/${id1}/PREV_OPR_LIST/EqualizeBalance/${index}${queryString ? `?${queryString}` : ''}`
+    );
+  }
+
+  /**
+   * @method linesprevOprListEqualizebalanceV1Post
+   * @description Corresponds to `POST /productionRoutes/LINES/{id1}/PREV_OPR_LIST/EqualizeBalance/{_index}`
+   * @param {number} id1 - id1
+   * @param {number} index - _index
+   * @param {RsRtnlinexml} data - The request body.
+   * @param {QueryOptions} [options] - Optional query parameters.
+   * @returns {Promise<KeyValueParameter[]>} A promise resolving to the response.
+   */
+  async linesprevOprListEqualizebalanceV1Post(
+    id1: number,
+    index: number,
+    data: RsRtnlinexml,
+    options?: ProductionRoutesQueryOptions
+  ): Promise<KeyValueParameter[]> {
+    const queryString = options ? this.buildQueryString(options) : '';
+    return this.request(
+      'post',
+      `/productionRoutes/LINES/${id1}/PREV_OPR_LIST/EqualizeBalance/${index}${queryString ? `?${queryString}` : ''}`,
+      data
+    );
+  }
+
+  /**
+   * Search productionRoutes by CODE
+   * @param code - The CODE to search for
+   * @returns Promise resolving to matching entities
+   */
+  async searchByCode(code: string | number | boolean): Promise<ApiResponse<ProductionRoutes>> {
+    return this.getAll({ q: `CODE like '${code}*'` });
+  }
+
+  /**
+   * Search productionRoutes by NAME
+   * @param name - The NAME to search for
+   * @returns Promise resolving to matching entities
+   */
+  async searchByName(name: string | number | boolean): Promise<ApiResponse<ProductionRoutes>> {
+    return this.getAll({ q: `NAME like '${name}*'` });
+  }
+
+  /**
+   * Search productionRoutes by TYPE
+   * @param type - The TYPE to search for
+   * @returns Promise resolving to matching entities
+   */
+  async searchByType(type: string | number | boolean): Promise<ApiResponse<ProductionRoutes>> {
+    return this.getAll({ q: `TYPE eq ${type}` });
+  }
+
+  /**
+   * @method getAnalytics
+   * @description Retrieves analytics data for `ProductionRoutes` entities.
+   * @returns {Promise<ProductionRoutesAnalytics>} A promise that resolves to the analytics data.
+   *
+   * @example
+   * // Retrieves analytics for ProductionRoutes
+   * const analytics = await client.productionRoutes.getAnalytics();
+   */
+  async getAnalytics(): Promise<ProductionRoutesAnalytics> {
+    const count = await this.getCount();
+    return {
+      total: count,
+      // Add more analytics as needed
+    };
+  }
+
+  /**
+   * @method getCount
+   * @description Retrieves the total count of `ProductionRoutes` entities.
+   * @returns {Promise<number>} A promise that resolves to the total count.
+   *
+   * @example
+   * // Retrieves the total count of ProductionRoutes
+   * const count = await client.productionRoutes.getCount();
+   */
+  async getCount(): Promise<number> {
+    const response = await this.getAll({ count: true });
+    return response.totalCount || 0;
+  }
+
+  /**
+   * @method getDbColumns
+   * @description Retrieves database column information for the `ProductionRoutes` entity.
+   * @returns {Promise<unknown[]>} A promise that resolves to an array of column definitions.
+   *
+   * @example
+   * // Retrieves column info for ProductionRoutes
+   * const columns = await client.productionRoutes.getDbColumns();
+   */
+  async getDbColumns(): Promise<unknown[]> {
+    return this.request('get', `${this.endpoint}/dbcolumns`);
+  }
+
+  /**
+   * @method track
+   * @description Enables change tracking for the `ProductionRoutes` entity.
+   * @returns {Promise<unknown>} A promise that resolves with the tracking status.
+   *
+   * @example
+   * // Enables change tracking for ProductionRoutes
+   * await client.productionRoutes.track();
+   */
+  async track(): Promise<unknown> {
+    return this.request('get', `${this.endpoint}/track`);
+  }
+
+  /**
+   * @method untrack
+   * @description Disables change tracking for the `ProductionRoutes` entity.
+   * @returns {Promise<unknown>} A promise that resolves with the tracking status.
+   *
+   * @example
+   * // Disables change tracking for ProductionRoutes
+   * await client.productionRoutes.untrack();
+   */
+  async untrack(): Promise<unknown> {
+    return this.request('get', `${this.endpoint}/untrack`);
+  }
+
+  /**
+   * @method checkTrackStatus
+   * @description Checks the change tracking status for the `ProductionRoutes` entity.
+   * @returns {Promise<boolean>} A promise that resolves to `true` if tracking is enabled, otherwise `false`.
+   *
+   * @example
+   * // Checks the tracking status for ProductionRoutes
+   * const isTracking = await client.productionRoutes.checkTrackStatus();
+   */
+  async checkTrackStatus(): Promise<boolean> {
+    return this.request('get', `${this.endpoint}/checktrack`);
+  }
+
+  /**
+   * @method buildSearchQuery
+   * @private
+   * @description Builds a search query string from a criteria object.
+   * @param {ProductionRoutesSearchCriteria} criteria - The search criteria.
+   * @returns {string | undefined} The OData query string, or `undefined` if no criteria are provided.
+   */
+  private buildSearchQuery(criteria: ProductionRoutesSearchCriteria): string | undefined {
+    return buildSearchQuery(criteria);
+  }
+}

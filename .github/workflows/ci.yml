@@ -1,0 +1,115 @@
+name: 'CI - Lint and Format'
+
+# Run on pull requests and pushes to main branch
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow only one concurrent deployment
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-format:
+    name: 'Lint and Format Check'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+        with:
+          node-version: '22'
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Run ESLint
+        run: pnpm lint
+
+      - name: Check Prettier formatting
+        run: pnpm format:check
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Run validation tests
+        run: pnpm test:validate
+
+  auto-fix:
+    name: 'Auto-fix Formatting (if needed)'
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+    if: failure() && github.event_name == 'pull_request'
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.head_ref }}
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+        with:
+          node-version: '22'
+
+      - name: Auto-fix linting and formatting
+        run: pnpm fix
+
+      - name: Check if there are changes
+        id: verify-changed-files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "🔧 Auto-fix linting and formatting"
+          git push
+
+  test-matrix:
+    name: 'Test on Node.js ${{ matrix.node-version }}'
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Run tests with coverage
+        run: pnpm test:coverage
