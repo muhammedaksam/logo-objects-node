@@ -28,7 +28,6 @@
     "version:update": "ts-node scripts/version-helper.ts update",
     "version:bump": "ts-node scripts/version-helper.ts update"
   },
-  "packageManager": "pnpm@10.23.0",
   "keywords": [
     "logo",
     "erp",
@@ -74,5 +73,6 @@
   "engines": {
     "node": ">=18",
     "pnpm": "^10.23.0"
-  }
+  },
+  "packageManager": "pnpm@10.23.0"
 }
