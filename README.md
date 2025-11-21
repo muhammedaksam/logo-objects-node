@@ -1,6 +1,4 @@
-# Logo Objects REST API Client
-
-# Sipay Node.js SDK
+# Logo Objects REST API Client Node.js SDK
 
 [![npm version](https://img.shields.io/npm/v/@muhammedaksam/logo-objects-node.svg)](https://www.npmjs.com/package/@muhammedaksam/logo-objects-node)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

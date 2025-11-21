@@ -33,8 +33,7 @@
     "erp",
     "api",
     "client",
-    "typescript",
-    "swagger"
+    "typescript"
   ],
   "author": "Muhammed Mustafa AKŞAM <info@muhammedaksam.com.tr> (https://github.com/muhammedaksam)",
   "license": "MIT",
