@@ -26,7 +26,8 @@
     "clean": "rm -rf dist coverage",
     "version:show": "ts-node scripts/version-helper.ts show",
     "version:update": "ts-node scripts/version-helper.ts update",
-    "version:bump": "ts-node scripts/version-helper.ts update"
+    "version:bump": "ts-node scripts/version-helper.ts update",
+    "prepublishOnly": "pnpm run test && pnpm run build"
   },
   "keywords": [
     "logo",
