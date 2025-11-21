@@ -21,10 +21,10 @@ runs:
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 10.12.4
+        version: 10
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
       with:
         node-version: ${{ inputs.node-version }}
         cache: ${{ inputs.cache == 'true' && 'pnpm' || '' }}
@@ -32,7 +32,7 @@ runs:
     - name: Install dependencies
       if: inputs.install-deps == 'true'
       shell: bash
-      run: pnpm install
+      run: pnpm install --frozen-lockfile
 
     - name: Environment summary
       shell: bash
