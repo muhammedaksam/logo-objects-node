@@ -1,13 +1,11 @@
-# Logo Objects REST API Client
-
-# Sipay Node.js SDK
+# Logo Objects REST API Client Node.js SDK
 
 [![npm version](https://img.shields.io/npm/v/@muhammedaksam/logo-objects-node.svg)](https://www.npmjs.com/package/@muhammedaksam/logo-objects-node)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![CI](https://github.com/muhammedaksam/logo-objects-node/workflows/CI/badge.svg)](https://github.com/muhammedaksam/logo-objects-node/actions)
 [![codecov](https://codecov.io/gh/muhammedaksam/logo-objects-node/branch/main/graph/badge.svg)](https://codecov.io/gh/muhammedaksam/logo-objects-node)
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-green.svg)](https://nodejs.org/)
 
 A comprehensive TypeScript client SDK for the Logo Objects REST Service API. This project provides type-safe API clients and comprehensive test suites.
 
@@ -15,7 +13,6 @@ A comprehensive TypeScript client SDK for the Logo Objects REST Service API. Thi
 
 - 🚀 **TypeScript Client SDK** - Type-safe API clients with full IntelliSense support
 - 🧪 **Test Suites** - Comprehensive test coverage with Jest
-- 🛠️ **Code Generation** - Automatic type and client generation from Swagger files
 - ⚡ **Performance Optimized** - Built-in retry logic, caching, and error handling
 
 ## Installation

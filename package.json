@@ -26,15 +26,15 @@
     "clean": "rm -rf dist coverage",
     "version:show": "ts-node scripts/version-helper.ts show",
     "version:update": "ts-node scripts/version-helper.ts update",
-    "version:bump": "ts-node scripts/version-helper.ts update"
+    "version:bump": "ts-node scripts/version-helper.ts update",
+    "prepublishOnly": "pnpm run test && pnpm run build"
   },
   "keywords": [
     "logo",
     "erp",
     "api",
     "client",
-    "typescript",
-    "swagger"
+    "typescript"
   ],
   "author": "Muhammed Mustafa AKŞAM <info@muhammedaksam.com.tr> (https://github.com/muhammedaksam)",
   "license": "MIT",
