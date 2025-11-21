@@ -1,6 +1,6 @@
 {
   "name": "@muhammedaksam/logo-objects-node",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TypeScript client SDK and tools for Logo Objects REST Service API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,7 +28,7 @@
     "version:update": "ts-node scripts/version-helper.ts update",
     "version:bump": "ts-node scripts/version-helper.ts update"
   },
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.23.0",
   "keywords": [
     "logo",
     "erp",
