@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![CI](https://github.com/muhammedaksam/logo-objects-node/workflows/CI/badge.svg)](https://github.com/muhammedaksam/logo-objects-node/actions)
 [![codecov](https://codecov.io/gh/muhammedaksam/logo-objects-node/branch/main/graph/badge.svg)](https://codecov.io/gh/muhammedaksam/logo-objects-node)
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-green.svg)](https://nodejs.org/)
 
 A comprehensive TypeScript client SDK for the Logo Objects REST Service API. This project provides type-safe API clients and comprehensive test suites.
 
