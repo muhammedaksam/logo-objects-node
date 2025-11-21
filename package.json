@@ -24,9 +24,9 @@
     "lint:check": "pnpm lint && pnpm format:check",
     "fix": "pnpm lint:fix && pnpm format",
     "clean": "rm -rf dist coverage",
-    "version:show": "npx tsx scripts/version-helper.ts show",
-    "version:update": "npx tsx scripts/version-helper.ts update",
-    "version:bump": "npx tsx scripts/version-helper.ts update"
+    "version:show": "ts-node scripts/version-helper.ts show",
+    "version:update": "ts-node scripts/version-helper.ts update",
+    "version:bump": "ts-node scripts/version-helper.ts update"
   },
   "packageManager": "pnpm@10.12.4",
   "keywords": [
@@ -62,7 +62,6 @@
     "prettier": "^3.6.2",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
-    "tsx": "^4.20.6",
     "typescript": "^5.8.3"
   },
   "dependencies": {
