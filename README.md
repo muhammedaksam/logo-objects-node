@@ -128,12 +128,6 @@ pnpm run lint:fix         # Fix ESLint issues
 pnpm run clean            # Clean build artifacts
 ```
 
-## Project Structure
-
-```
-
-```
-
 ## Supported APIs
 
 This client supports all Logo Objects REST Service APIs
