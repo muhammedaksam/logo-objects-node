@@ -1,6 +1,6 @@
 {
   "name": "@muhammedaksam/logo-objects-node",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "TypeScript client SDK and tools for Logo Objects REST Service API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,7 +27,8 @@
     "version:show": "ts-node scripts/version-helper.ts show",
     "version:update": "ts-node scripts/version-helper.ts update",
     "version:bump": "ts-node scripts/version-helper.ts update",
-    "prepublishOnly": "pnpm run test && pnpm run build"
+    "prepublishOnly": "pnpm run test && pnpm run build && node -e \"const fs=require('fs'); if(!fs.existsSync('dist')||!fs.existsSync('dist/index.js')){console.error('ERROR: build artifacts missing in dist'); process.exit(1)}\"",
+    "prepare": "pnpm run build"
   },
   "keywords": [
     "logo",
@@ -74,5 +75,8 @@
     "node": ">=18",
     "pnpm": "^10.23.0"
   },
+  "files": [
+    "dist"
+  ],
   "packageManager": "pnpm@10.23.0"
 }

@@ -1,0 +1,14 @@
+src/
+tests/
+.github/
+*.ts
+*.map
+test-*.js
+scripts/
+coverage/
+*.log
+node_modules/
+.env
+tsconfig.json
+README.md
+jest.config.js
