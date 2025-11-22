@@ -17,29 +17,22 @@ A comprehensive TypeScript client SDK for the Logo Objects REST Service API. Thi
 
 ## Installation
 
-This project uses [pnpm](https://pnpm.io/) for package management.
-
-### Prerequisites
-
-- Node.js 20 or higher
-- pnpm 8.0.0 or higher
-
-Install pnpm globally if you haven't already:
+Install the SDK using your preferred package manager:
 
 ```bash
-npm install -g pnpm
+pnpm add @muhammedaksam/logo-objects-node
 ```
 
-### Install Dependencies
+Or with npm:
 
 ```bash
-pnpm install
+npm install @muhammedaksam/logo-objects-node
 ```
 
-### Build the Project
+Or with yarn:
 
 ```bash
-pnpm run build
+yarn add @muhammedaksam/logo-objects-node
 ```
 
 ## Quick Start
@@ -191,6 +184,33 @@ try {
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## Development
+
+This project uses [pnpm](https://pnpm.io/) for package management.
+
+### Prerequisites
+
+- Node.js 20 or higher
+- pnpm 8.0.0 or higher
+
+Install pnpm globally if you haven't already:
+
+```bash
+npm install -g pnpm
+```
+
+### Install Dependencies
+
+```bash
+pnpm install
+```
+
+### Build the Project
+
+```bash
+pnpm run build
+```
 
 ### Development Setup
 
