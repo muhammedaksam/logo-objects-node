@@ -1,6 +1,6 @@
 {
   "name": "@muhammedaksam/logo-objects-node",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "TypeScript client SDK and tools for Logo Objects REST Service API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
