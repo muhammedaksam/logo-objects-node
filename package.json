@@ -1,6 +1,6 @@
 {
   "name": "@muhammedaksam/logo-objects-node",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "TypeScript client SDK and tools for Logo Objects REST Service API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -78,5 +78,9 @@
   "files": [
     "dist"
   ],
-  "packageManager": "pnpm@10.23.0"
+  "packageManager": "pnpm@10.23.0",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }
