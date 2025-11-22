@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: write
       packages: read
+    if: ${{ !contains(github.event.release.name || '', '[skip ci]') }}
 
     steps:
       - name: Checkout code
