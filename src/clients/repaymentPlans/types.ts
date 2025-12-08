@@ -182,8 +182,10 @@ export type RepaymentPlansSortSpec =
  * });
  * ```
  */
-export interface RepaymentPlansQueryOptions
-  extends Omit<QueryOptions<RepaymentPlansField>, 'fields' | 'sort'> {
+export interface RepaymentPlansQueryOptions extends Omit<
+  QueryOptions<RepaymentPlansField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -145,8 +145,10 @@ export type LocationCodesSortSpec =
  * });
  * ```
  */
-export interface LocationCodesQueryOptions
-  extends Omit<QueryOptions<LocationCodesField>, 'fields' | 'sort'> {
+export interface LocationCodesQueryOptions extends Omit<
+  QueryOptions<LocationCodesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

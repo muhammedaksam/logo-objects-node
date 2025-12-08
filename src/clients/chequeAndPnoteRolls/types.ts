@@ -1141,8 +1141,10 @@ export type ChequeAndPnoteRollsSortSpec =
  * });
  * ```
  */
-export interface ChequeAndPnoteRollsQueryOptions
-  extends Omit<QueryOptions<ChequeAndPnoteRollsField>, 'fields' | 'sort'> {
+export interface ChequeAndPnoteRollsQueryOptions extends Omit<
+  QueryOptions<ChequeAndPnoteRollsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

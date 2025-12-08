@@ -336,8 +336,10 @@ export type ProductionResourceUtilizationSortSpec =
  * });
  * ```
  */
-export interface ProductionResourceUtilizationQueryOptions
-  extends Omit<QueryOptions<ProductionResourceUtilizationField>, 'fields' | 'sort'> {
+export interface ProductionResourceUtilizationQueryOptions extends Omit<
+  QueryOptions<ProductionResourceUtilizationField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

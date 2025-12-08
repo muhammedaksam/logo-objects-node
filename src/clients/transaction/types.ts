@@ -72,8 +72,10 @@ export type TransactionSortSpec =
  * });
  * ```
  */
-export interface TransactionQueryOptions
-  extends Omit<QueryOptions<TransactionField>, 'fields' | 'sort'> {
+export interface TransactionQueryOptions extends Omit<
+  QueryOptions<TransactionField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

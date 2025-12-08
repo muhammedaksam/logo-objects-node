@@ -131,8 +131,10 @@ export type ItemStandardCostsSortSpec =
  * });
  * ```
  */
-export interface ItemStandardCostsQueryOptions
-  extends Omit<QueryOptions<ItemStandardCostsField>, 'fields' | 'sort'> {
+export interface ItemStandardCostsQueryOptions extends Omit<
+  QueryOptions<ItemStandardCostsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

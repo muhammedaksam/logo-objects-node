@@ -4550,8 +4550,10 @@ export type SalesInvoicesSortSpec =
  * });
  * ```
  */
-export interface SalesInvoicesQueryOptions
-  extends Omit<QueryOptions<SalesInvoicesField>, 'fields' | 'sort'> {
+export interface SalesInvoicesQueryOptions extends Omit<
+  QueryOptions<SalesInvoicesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

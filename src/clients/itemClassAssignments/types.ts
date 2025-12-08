@@ -117,8 +117,10 @@ export type ItemClassAssignmentsSortSpec =
  * });
  * ```
  */
-export interface ItemClassAssignmentsQueryOptions
-  extends Omit<QueryOptions<ItemClassAssignmentsField>, 'fields' | 'sort'> {
+export interface ItemClassAssignmentsQueryOptions extends Omit<
+  QueryOptions<ItemClassAssignmentsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

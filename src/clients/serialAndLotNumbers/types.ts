@@ -131,8 +131,10 @@ export type SerialAndLotNumbersSortSpec =
  * });
  * ```
  */
-export interface SerialAndLotNumbersQueryOptions
-  extends Omit<QueryOptions<SerialAndLotNumbersField>, 'fields' | 'sort'> {
+export interface SerialAndLotNumbersQueryOptions extends Omit<
+  QueryOptions<SerialAndLotNumbersField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

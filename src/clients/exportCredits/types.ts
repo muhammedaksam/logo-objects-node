@@ -181,8 +181,10 @@ export type ExportCreditsSortSpec =
  * });
  * ```
  */
-export interface ExportCreditsQueryOptions
-  extends Omit<QueryOptions<ExportCreditsField>, 'fields' | 'sort'> {
+export interface ExportCreditsQueryOptions extends Omit<
+  QueryOptions<ExportCreditsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

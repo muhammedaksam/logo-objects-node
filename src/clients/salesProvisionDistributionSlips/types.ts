@@ -781,8 +781,10 @@ export type SalesProvisionDistributionSlipsSortSpec =
  * });
  * ```
  */
-export interface SalesProvisionDistributionSlipsQueryOptions
-  extends Omit<QueryOptions<SalesProvisionDistributionSlipsField>, 'fields' | 'sort'> {
+export interface SalesProvisionDistributionSlipsQueryOptions extends Omit<
+  QueryOptions<SalesProvisionDistributionSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

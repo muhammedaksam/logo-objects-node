@@ -109,8 +109,10 @@ export type CustomsOfficesSortSpec =
  * });
  * ```
  */
-export interface CustomsOfficesQueryOptions
-  extends Omit<QueryOptions<CustomsOfficesField>, 'fields' | 'sort'> {
+export interface CustomsOfficesQueryOptions extends Omit<
+  QueryOptions<CustomsOfficesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

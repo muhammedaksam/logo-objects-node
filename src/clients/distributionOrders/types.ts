@@ -578,8 +578,10 @@ export type DistributionOrdersSortSpec =
  * });
  * ```
  */
-export interface DistributionOrdersQueryOptions
-  extends Omit<QueryOptions<DistributionOrdersField>, 'fields' | 'sort'> {
+export interface DistributionOrdersQueryOptions extends Omit<
+  QueryOptions<DistributionOrdersField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

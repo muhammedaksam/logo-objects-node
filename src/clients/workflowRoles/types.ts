@@ -140,8 +140,10 @@ export type WorkflowRolesSortSpec =
  * });
  * ```
  */
-export interface WorkflowRolesQueryOptions
-  extends Omit<QueryOptions<WorkflowRolesField>, 'fields' | 'sort'> {
+export interface WorkflowRolesQueryOptions extends Omit<
+  QueryOptions<WorkflowRolesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

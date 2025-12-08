@@ -256,8 +256,10 @@ export type PurchaseCampaignsSortSpec =
  * });
  * ```
  */
-export interface PurchaseCampaignsQueryOptions
-  extends Omit<QueryOptions<PurchaseCampaignsField>, 'fields' | 'sort'> {
+export interface PurchaseCampaignsQueryOptions extends Omit<
+  QueryOptions<PurchaseCampaignsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

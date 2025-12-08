@@ -705,8 +705,10 @@ export type PaymentDifferenceInvoicesSortSpec =
  * });
  * ```
  */
-export interface PaymentDifferenceInvoicesQueryOptions
-  extends Omit<QueryOptions<PaymentDifferenceInvoicesField>, 'fields' | 'sort'> {
+export interface PaymentDifferenceInvoicesQueryOptions extends Omit<
+  QueryOptions<PaymentDifferenceInvoicesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

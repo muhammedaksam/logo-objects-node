@@ -925,8 +925,10 @@ export type ArpGroupAssignmentsSortSpec =
  * });
  * ```
  */
-export interface ArpGroupAssignmentsQueryOptions
-  extends Omit<QueryOptions<ArpGroupAssignmentsField>, 'fields' | 'sort'> {
+export interface ArpGroupAssignmentsQueryOptions extends Omit<
+  QueryOptions<ArpGroupAssignmentsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

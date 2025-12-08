@@ -109,8 +109,10 @@ export type BankMLDescriptionsSortSpec =
  * });
  * ```
  */
-export interface BankMLDescriptionsQueryOptions
-  extends Omit<QueryOptions<BankMLDescriptionsField>, 'fields' | 'sort'> {
+export interface BankMLDescriptionsQueryOptions extends Omit<
+  QueryOptions<BankMLDescriptionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

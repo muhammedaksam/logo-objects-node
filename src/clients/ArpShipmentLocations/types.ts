@@ -211,8 +211,10 @@ export type ArpShipmentLocationsSortSpec =
  * });
  * ```
  */
-export interface ArpShipmentLocationsQueryOptions
-  extends Omit<QueryOptions<ArpShipmentLocationsField>, 'fields' | 'sort'> {
+export interface ArpShipmentLocationsQueryOptions extends Omit<
+  QueryOptions<ArpShipmentLocationsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

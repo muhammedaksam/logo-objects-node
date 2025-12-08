@@ -114,8 +114,10 @@ export type DistrictsSortSpec =
  * });
  * ```
  */
-export interface DistrictsQueryOptions
-  extends Omit<QueryOptions<DistrictsField>, 'fields' | 'sort'> {
+export interface DistrictsQueryOptions extends Omit<
+  QueryOptions<DistrictsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

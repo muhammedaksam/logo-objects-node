@@ -303,8 +303,10 @@ export type PurchasedServicePricesSortSpec =
  * });
  * ```
  */
-export interface PurchasedServicePricesQueryOptions
-  extends Omit<QueryOptions<PurchasedServicePricesField>, 'fields' | 'sort'> {
+export interface PurchasedServicePricesQueryOptions extends Omit<
+  QueryOptions<PurchasedServicePricesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

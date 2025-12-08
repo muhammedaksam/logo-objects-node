@@ -72,8 +72,10 @@ export type DefinitionsSortSpec =
  * });
  * ```
  */
-export interface DefinitionsQueryOptions
-  extends Omit<QueryOptions<DefinitionsField>, 'fields' | 'sort'> {
+export interface DefinitionsQueryOptions extends Omit<
+  QueryOptions<DefinitionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

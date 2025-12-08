@@ -249,8 +249,10 @@ export type DistributionRoutesSortSpec =
  * });
  * ```
  */
-export interface DistributionRoutesQueryOptions
-  extends Omit<QueryOptions<DistributionRoutesField>, 'fields' | 'sort'> {
+export interface DistributionRoutesQueryOptions extends Omit<
+  QueryOptions<DistributionRoutesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

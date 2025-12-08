@@ -232,8 +232,10 @@ export type QccriteriasetsSortSpec =
  * });
  * ```
  */
-export interface QccriteriasetsQueryOptions
-  extends Omit<QueryOptions<QccriteriasetsField>, 'fields' | 'sort'> {
+export interface QccriteriasetsQueryOptions extends Omit<
+  QueryOptions<QccriteriasetsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

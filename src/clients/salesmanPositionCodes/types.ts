@@ -127,8 +127,10 @@ export type SalesmanPositionCodesSortSpec =
  * });
  * ```
  */
-export interface SalesmanPositionCodesQueryOptions
-  extends Omit<QueryOptions<SalesmanPositionCodesField>, 'fields' | 'sort'> {
+export interface SalesmanPositionCodesQueryOptions extends Omit<
+  QueryOptions<SalesmanPositionCodesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

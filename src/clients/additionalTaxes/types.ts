@@ -208,8 +208,10 @@ export type AdditionalTaxesSortSpec =
  * });
  * ```
  */
-export interface AdditionalTaxesQueryOptions
-  extends Omit<QueryOptions<AdditionalTaxesField>, 'fields' | 'sort'> {
+export interface AdditionalTaxesQueryOptions extends Omit<
+  QueryOptions<AdditionalTaxesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

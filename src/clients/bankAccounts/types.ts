@@ -524,8 +524,10 @@ export type BankAccountsSortSpec =
  * });
  * ```
  */
-export interface BankAccountsQueryOptions
-  extends Omit<QueryOptions<BankAccountsField>, 'fields' | 'sort'> {
+export interface BankAccountsQueryOptions extends Omit<
+  QueryOptions<BankAccountsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -109,8 +109,10 @@ export type ArpMLDescriptonsSortSpec =
  * });
  * ```
  */
-export interface ArpMLDescriptonsQueryOptions
-  extends Omit<QueryOptions<ArpMLDescriptonsField>, 'fields' | 'sort'> {
+export interface ArpMLDescriptonsQueryOptions extends Omit<
+  QueryOptions<ArpMLDescriptonsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -435,8 +435,10 @@ export type CollateralRollsSortSpec =
  * });
  * ```
  */
-export interface CollateralRollsQueryOptions
-  extends Omit<QueryOptions<CollateralRollsField>, 'fields' | 'sort'> {
+export interface CollateralRollsQueryOptions extends Omit<
+  QueryOptions<CollateralRollsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

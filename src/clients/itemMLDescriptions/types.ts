@@ -109,8 +109,10 @@ export type ItemMLDescriptionsSortSpec =
  * });
  * ```
  */
-export interface ItemMLDescriptionsQueryOptions
-  extends Omit<QueryOptions<ItemMLDescriptionsField>, 'fields' | 'sort'> {
+export interface ItemMLDescriptionsQueryOptions extends Omit<
+  QueryOptions<ItemMLDescriptionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

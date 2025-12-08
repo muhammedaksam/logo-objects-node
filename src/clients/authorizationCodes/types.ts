@@ -127,8 +127,10 @@ export type AuthorizationCodesSortSpec =
  * });
  * ```
  */
-export interface AuthorizationCodesQueryOptions
-  extends Omit<QueryOptions<AuthorizationCodesField>, 'fields' | 'sort'> {
+export interface AuthorizationCodesQueryOptions extends Omit<
+  QueryOptions<AuthorizationCodesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

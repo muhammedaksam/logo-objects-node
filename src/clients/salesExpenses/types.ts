@@ -158,8 +158,10 @@ export type SalesExpensesSortSpec =
  * });
  * ```
  */
-export interface SalesExpensesQueryOptions
-  extends Omit<QueryOptions<SalesExpensesField>, 'fields' | 'sort'> {
+export interface SalesExpensesQueryOptions extends Omit<
+  QueryOptions<SalesExpensesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

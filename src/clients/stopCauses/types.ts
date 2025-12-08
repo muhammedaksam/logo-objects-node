@@ -115,8 +115,10 @@ export type StopCausesSortSpec =
  * });
  * ```
  */
-export interface StopCausesQueryOptions
-  extends Omit<QueryOptions<StopCausesField>, 'fields' | 'sort'> {
+export interface StopCausesQueryOptions extends Omit<
+  QueryOptions<StopCausesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

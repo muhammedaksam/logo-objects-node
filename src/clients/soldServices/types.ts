@@ -314,8 +314,10 @@ export type SoldServicesSortSpec =
  * });
  * ```
  */
-export interface SoldServicesQueryOptions
-  extends Omit<QueryOptions<SoldServicesField>, 'fields' | 'sort'> {
+export interface SoldServicesQueryOptions extends Omit<
+  QueryOptions<SoldServicesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

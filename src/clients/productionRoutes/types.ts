@@ -205,8 +205,10 @@ export type ProductionRoutesSortSpec =
  * });
  * ```
  */
-export interface ProductionRoutesQueryOptions
-  extends Omit<QueryOptions<ProductionRoutesField>, 'fields' | 'sort'> {
+export interface ProductionRoutesQueryOptions extends Omit<
+  QueryOptions<ProductionRoutesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

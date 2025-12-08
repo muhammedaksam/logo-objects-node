@@ -127,8 +127,10 @@ export type DeliveryCodesSortSpec =
  * });
  * ```
  */
-export interface DeliveryCodesQueryOptions
-  extends Omit<QueryOptions<DeliveryCodesField>, 'fields' | 'sort'> {
+export interface DeliveryCodesQueryOptions extends Omit<
+  QueryOptions<DeliveryCodesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

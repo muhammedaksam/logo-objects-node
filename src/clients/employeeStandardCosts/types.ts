@@ -131,8 +131,10 @@ export type EmployeeStandardCostsSortSpec =
  * });
  * ```
  */
-export interface EmployeeStandardCostsQueryOptions
-  extends Omit<QueryOptions<EmployeeStandardCostsField>, 'fields' | 'sort'> {
+export interface EmployeeStandardCostsQueryOptions extends Omit<
+  QueryOptions<EmployeeStandardCostsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -108,8 +108,10 @@ export type CountriesSortSpec =
  * });
  * ```
  */
-export interface CountriesQueryOptions
-  extends Omit<QueryOptions<CountriesField>, 'fields' | 'sort'> {
+export interface CountriesQueryOptions extends Omit<
+  QueryOptions<CountriesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

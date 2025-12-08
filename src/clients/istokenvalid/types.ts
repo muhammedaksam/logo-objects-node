@@ -77,8 +77,10 @@ export type IstokenvalidSortSpec =
  * });
  * ```
  */
-export interface IstokenvalidQueryOptions
-  extends Omit<QueryOptions<IstokenvalidField>, 'fields' | 'sort'> {
+export interface IstokenvalidQueryOptions extends Omit<
+  QueryOptions<IstokenvalidField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -158,8 +158,10 @@ export type SalesDiscountsSortSpec =
  * });
  * ```
  */
-export interface SalesDiscountsQueryOptions
-  extends Omit<QueryOptions<SalesDiscountsField>, 'fields' | 'sort'> {
+export interface SalesDiscountsQueryOptions extends Omit<
+  QueryOptions<SalesDiscountsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

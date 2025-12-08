@@ -162,8 +162,10 @@ export type CharacteristicsSortSpec =
  * });
  * ```
  */
-export interface CharacteristicsQueryOptions
-  extends Omit<QueryOptions<CharacteristicsField>, 'fields' | 'sort'> {
+export interface CharacteristicsQueryOptions extends Omit<
+  QueryOptions<CharacteristicsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

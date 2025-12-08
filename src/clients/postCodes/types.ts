@@ -106,8 +106,10 @@ export type PostCodesSortSpec =
  * });
  * ```
  */
-export interface PostCodesQueryOptions
-  extends Omit<QueryOptions<PostCodesField>, 'fields' | 'sort'> {
+export interface PostCodesQueryOptions extends Omit<
+  QueryOptions<PostCodesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

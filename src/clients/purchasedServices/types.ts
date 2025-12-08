@@ -314,8 +314,10 @@ export type PurchasedServicesSortSpec =
  * });
  * ```
  */
-export interface PurchasedServicesQueryOptions
-  extends Omit<QueryOptions<PurchasedServicesField>, 'fields' | 'sort'> {
+export interface PurchasedServicesQueryOptions extends Omit<
+  QueryOptions<PurchasedServicesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

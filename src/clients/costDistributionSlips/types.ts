@@ -781,8 +781,10 @@ export type CostDistributionSlipsSortSpec =
  * });
  * ```
  */
-export interface CostDistributionSlipsQueryOptions
-  extends Omit<QueryOptions<CostDistributionSlipsField>, 'fields' | 'sort'> {
+export interface CostDistributionSlipsQueryOptions extends Omit<
+  QueryOptions<CostDistributionSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

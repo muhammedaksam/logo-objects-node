@@ -296,8 +296,10 @@ export type OpportunitiesSortSpec =
  * });
  * ```
  */
-export interface OpportunitiesQueryOptions
-  extends Omit<QueryOptions<OpportunitiesField>, 'fields' | 'sort'> {
+export interface OpportunitiesQueryOptions extends Omit<
+  QueryOptions<OpportunitiesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']
