@@ -192,8 +192,10 @@ export type SalesPromotionsSortSpec =
  * });
  * ```
  */
-export interface SalesPromotionsQueryOptions
-  extends Omit<QueryOptions<SalesPromotionsField>, 'fields' | 'sort'> {
+export interface SalesPromotionsQueryOptions extends Omit<
+  QueryOptions<SalesPromotionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

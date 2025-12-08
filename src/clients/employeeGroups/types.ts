@@ -183,8 +183,10 @@ export type EmployeeGroupsSortSpec =
  * });
  * ```
  */
-export interface EmployeeGroupsQueryOptions
-  extends Omit<QueryOptions<EmployeeGroupsField>, 'fields' | 'sort'> {
+export interface EmployeeGroupsQueryOptions extends Omit<
+  QueryOptions<EmployeeGroupsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

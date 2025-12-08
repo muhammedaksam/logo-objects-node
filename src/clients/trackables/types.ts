@@ -82,8 +82,10 @@ export type TrackablesSortSpec =
  * });
  * ```
  */
-export interface TrackablesQueryOptions
-  extends Omit<QueryOptions<TrackablesField>, 'fields' | 'sort'> {
+export interface TrackablesQueryOptions extends Omit<
+  QueryOptions<TrackablesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

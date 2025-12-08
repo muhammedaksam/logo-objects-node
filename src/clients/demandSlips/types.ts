@@ -574,8 +574,10 @@ export type DemandSlipsSortSpec =
  * });
  * ```
  */
-export interface DemandSlipsQueryOptions
-  extends Omit<QueryOptions<DemandSlipsField>, 'fields' | 'sort'> {
+export interface DemandSlipsQueryOptions extends Omit<
+  QueryOptions<DemandSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

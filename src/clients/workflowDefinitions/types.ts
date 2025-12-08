@@ -237,8 +237,10 @@ export type WorkflowDefinitionsSortSpec =
  * });
  * ```
  */
-export interface WorkflowDefinitionsQueryOptions
-  extends Omit<QueryOptions<WorkflowDefinitionsField>, 'fields' | 'sort'> {
+export interface WorkflowDefinitionsQueryOptions extends Omit<
+  QueryOptions<WorkflowDefinitionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -180,8 +180,10 @@ export type SafeDepositsSortSpec =
  * });
  * ```
  */
-export interface SafeDepositsQueryOptions
-  extends Omit<QueryOptions<SafeDepositsField>, 'fields' | 'sort'> {
+export interface SafeDepositsQueryOptions extends Omit<
+  QueryOptions<SafeDepositsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

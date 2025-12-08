@@ -1175,8 +1175,10 @@ export type SalesContractsSortSpec =
  * });
  * ```
  */
-export interface SalesContractsQueryOptions
-  extends Omit<QueryOptions<SalesContractsField>, 'fields' | 'sort'> {
+export interface SalesContractsQueryOptions extends Omit<
+  QueryOptions<SalesContractsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

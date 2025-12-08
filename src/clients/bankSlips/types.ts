@@ -4921,8 +4921,10 @@ export type BankSlipsSortSpec =
  * });
  * ```
  */
-export interface BankSlipsQueryOptions
-  extends Omit<QueryOptions<BankSlipsField>, 'fields' | 'sort'> {
+export interface BankSlipsQueryOptions extends Omit<
+  QueryOptions<BankSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

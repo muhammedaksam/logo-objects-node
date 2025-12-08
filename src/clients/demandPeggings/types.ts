@@ -221,8 +221,10 @@ export type DemandPeggingsSortSpec =
  * });
  * ```
  */
-export interface DemandPeggingsQueryOptions
-  extends Omit<QueryOptions<DemandPeggingsField>, 'fields' | 'sort'> {
+export interface DemandPeggingsQueryOptions extends Omit<
+  QueryOptions<DemandPeggingsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

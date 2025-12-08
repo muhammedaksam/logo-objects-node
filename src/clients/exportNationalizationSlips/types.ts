@@ -623,8 +623,10 @@ export type ExportNationalizationSlipsSortSpec =
  * });
  * ```
  */
-export interface ExportNationalizationSlipsQueryOptions
-  extends Omit<QueryOptions<ExportNationalizationSlipsField>, 'fields' | 'sort'> {
+export interface ExportNationalizationSlipsQueryOptions extends Omit<
+  QueryOptions<ExportNationalizationSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

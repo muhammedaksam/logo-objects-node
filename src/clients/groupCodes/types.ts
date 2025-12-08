@@ -127,8 +127,10 @@ export type GroupCodesSortSpec =
  * });
  * ```
  */
-export interface GroupCodesQueryOptions
-  extends Omit<QueryOptions<GroupCodesField>, 'fields' | 'sort'> {
+export interface GroupCodesQueryOptions extends Omit<
+  QueryOptions<GroupCodesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

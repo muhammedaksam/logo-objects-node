@@ -766,8 +766,10 @@ export type FaregistriesSortSpec =
  * });
  * ```
  */
-export interface FaregistriesQueryOptions
-  extends Omit<QueryOptions<FaregistriesField>, 'fields' | 'sort'> {
+export interface FaregistriesQueryOptions extends Omit<
+  QueryOptions<FaregistriesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

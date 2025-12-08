@@ -172,8 +172,10 @@ export type CustomersOfSalesmenSortSpec =
  * });
  * ```
  */
-export interface CustomersOfSalesmenQueryOptions
-  extends Omit<QueryOptions<CustomersOfSalesmenField>, 'fields' | 'sort'> {
+export interface CustomersOfSalesmenQueryOptions extends Omit<
+  QueryOptions<CustomersOfSalesmenField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

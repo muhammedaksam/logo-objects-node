@@ -131,8 +131,10 @@ export type ProductionExceptionsSortSpec =
  * });
  * ```
  */
-export interface ProductionExceptionsQueryOptions
-  extends Omit<QueryOptions<ProductionExceptionsField>, 'fields' | 'sort'> {
+export interface ProductionExceptionsQueryOptions extends Omit<
+  QueryOptions<ProductionExceptionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

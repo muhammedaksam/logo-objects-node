@@ -6,7 +6,7 @@ import { execSync } from 'node:child_process';
 
 interface FileToUpdate {
   path: string;
-  type: 'package.json';
+  type: 'package.json' | 'context7.json';
 }
 
 // Get command line arguments
@@ -32,6 +32,63 @@ function getCurrentVersion(): string {
   } catch (error) {
     console.error('❌ Error reading current version:', (error as Error).message);
     process.exit(1);
+  }
+}
+
+// Function to update context7.json with version history
+function updateContext7Json(newVersion: string, oldVersion: string): string | null {
+  const context7Path = path.join(projectRoot, 'context7.json');
+
+  try {
+    if (!fs.existsSync(context7Path)) {
+      console.log('⚠️  context7.json not found - skipping Context7 update');
+      return null;
+    }
+
+    const content = fs.readFileSync(context7Path, 'utf8');
+    const context7Json = JSON.parse(content);
+
+    // Add the old version to previousVersions if it's not already there
+    if (!context7Json.previousVersions) {
+      context7Json.previousVersions = [];
+    }
+
+    // Only add old version if it's different from new version and not already in previousVersions
+    if (oldVersion !== newVersion) {
+      const oldVersionTag = `v${oldVersion}`;
+      const existingVersion = context7Json.previousVersions.find(
+        (v: any) => v.tag === oldVersionTag
+      );
+
+      if (!existingVersion) {
+        // Add old version to the beginning of previousVersions
+        context7Json.previousVersions.unshift({
+          tag: oldVersionTag,
+          title: `version ${oldVersion}`,
+        });
+
+        // Keep only the 5 most recent versions to avoid clutter
+        if (context7Json.previousVersions.length > 5) {
+          context7Json.previousVersions = context7Json.previousVersions.slice(0, 5);
+        }
+
+        const updatedContent = JSON.stringify(context7Json, null, 2) + '\n';
+        fs.writeFileSync(context7Path, updatedContent);
+        console.log(`✅ Updated context7.json: Added v${oldVersion} to previousVersions`);
+        return updatedContent;
+      } else {
+        console.log(
+          `ℹ️  Version v${oldVersion} already exists in context7.json previousVersions - no update needed`
+        );
+        return null;
+      }
+    } else {
+      console.log('ℹ️  No version change detected - skipping context7.json update');
+      return null;
+    }
+  } catch (error) {
+    console.error('❌ Error updating context7.json:', (error as Error).message);
+    return null;
   }
 }
 
@@ -121,6 +178,23 @@ function showVersions(): void {
     const version = packageJson.version;
 
     console.log(`📦 Package.json: ${version}`);
+
+    // Also show context7.json previous versions if available
+    const context7Path = path.join(projectRoot, 'context7.json');
+    if (fs.existsSync(context7Path)) {
+      try {
+        const context7Content = fs.readFileSync(context7Path, 'utf8');
+        const context7Json = JSON.parse(context7Content);
+        if (context7Json.previousVersions && context7Json.previousVersions.length > 0) {
+          console.log('\n📚 Previous Versions (Context7):');
+          context7Json.previousVersions.forEach((v: any, index: number) => {
+            console.log(`  ${index + 1}. ${v.tag} - ${v.title}`);
+          });
+        }
+      } catch (error) {
+        console.log(`⚠️  Context7.json: Error reading (${(error as Error).message})`);
+      }
+    }
   } catch (error) {
     console.log(`❌ Package.json: Error reading version (${(error as Error).message})`);
   }
@@ -135,6 +209,9 @@ function updateVersions(version: string): void {
     process.exit(1);
   }
 
+  // Get current version before updating
+  const currentVersion = getCurrentVersion();
+
   console.log(`🚀 Updating version to ${version}...`);
 
   // Files to update
@@ -142,6 +219,10 @@ function updateVersions(version: string): void {
     {
       path: 'package.json',
       type: 'package.json',
+    },
+    {
+      path: 'context7.json',
+      type: 'context7.json',
     },
   ];
 
@@ -154,8 +235,13 @@ function updateVersions(version: string): void {
 
     try {
       if (!fs.existsSync(fullPath)) {
-        console.warn(`⚠️  File not found: ${filePath}`);
-        return;
+        if (type === 'context7.json') {
+          console.log(`⚠️  File not found: ${filePath} - skipping Context7 update`);
+          return;
+        } else {
+          console.warn(`⚠️  File not found: ${filePath}`);
+          return;
+        }
       }
 
       const content = fs.readFileSync(fullPath, 'utf8');
@@ -171,6 +257,13 @@ function updateVersions(version: string): void {
 
         console.log(`✅ Updated ${filePath}: ${oldVersion} → ${version}`);
         updatedFiles++;
+      } else if (type === 'context7.json') {
+        // Update context7.json - add current version to previousVersions
+        const result = updateContext7Json(version, currentVersion);
+        if (result !== null) {
+          hasContext7Updated = true;
+          updatedFiles++;
+        }
       } else {
         throw new Error(`Unknown file type: ${type}`);
       }

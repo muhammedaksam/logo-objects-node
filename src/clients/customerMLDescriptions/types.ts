@@ -109,8 +109,10 @@ export type CustomerMLDescriptionsSortSpec =
  * });
  * ```
  */
-export interface CustomerMLDescriptionsQueryOptions
-  extends Omit<QueryOptions<CustomerMLDescriptionsField>, 'fields' | 'sort'> {
+export interface CustomerMLDescriptionsQueryOptions extends Omit<
+  QueryOptions<CustomerMLDescriptionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

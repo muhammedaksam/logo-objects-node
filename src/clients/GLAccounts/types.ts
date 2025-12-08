@@ -410,8 +410,10 @@ export type GlaccountsSortSpec =
  * });
  * ```
  */
-export interface GlaccountsQueryOptions
-  extends Omit<QueryOptions<GlaccountsField>, 'fields' | 'sort'> {
+export interface GlaccountsQueryOptions extends Omit<
+  QueryOptions<GlaccountsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

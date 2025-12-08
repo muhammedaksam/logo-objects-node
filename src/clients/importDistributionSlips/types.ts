@@ -272,8 +272,10 @@ export type ImportDistributionSlipsSortSpec =
  * });
  * ```
  */
-export interface ImportDistributionSlipsQueryOptions
-  extends Omit<QueryOptions<ImportDistributionSlipsField>, 'fields' | 'sort'> {
+export interface ImportDistributionSlipsQueryOptions extends Omit<
+  QueryOptions<ImportDistributionSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

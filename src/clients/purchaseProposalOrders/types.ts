@@ -1159,8 +1159,10 @@ export type PurchaseProposalOrdersSortSpec =
  * });
  * ```
  */
-export interface PurchaseProposalOrdersQueryOptions
-  extends Omit<QueryOptions<PurchaseProposalOrdersField>, 'fields' | 'sort'> {
+export interface PurchaseProposalOrdersQueryOptions extends Omit<
+  QueryOptions<PurchaseProposalOrdersField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

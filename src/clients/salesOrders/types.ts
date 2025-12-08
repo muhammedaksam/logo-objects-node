@@ -1623,8 +1623,10 @@ export type SalesOrdersSortSpec =
  * });
  * ```
  */
-export interface SalesOrdersQueryOptions
-  extends Omit<QueryOptions<SalesOrdersField>, 'fields' | 'sort'> {
+export interface SalesOrdersQueryOptions extends Omit<
+  QueryOptions<SalesOrdersField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

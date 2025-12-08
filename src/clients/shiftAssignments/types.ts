@@ -115,8 +115,10 @@ export type ShiftAssignmentsSortSpec =
  * });
  * ```
  */
-export interface ShiftAssignmentsQueryOptions
-  extends Omit<QueryOptions<ShiftAssignmentsField>, 'fields' | 'sort'> {
+export interface ShiftAssignmentsQueryOptions extends Omit<
+  QueryOptions<ShiftAssignmentsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

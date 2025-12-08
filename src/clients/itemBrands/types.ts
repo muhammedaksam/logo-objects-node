@@ -119,8 +119,10 @@ export type ItemBrandsSortSpec =
  * });
  * ```
  */
-export interface ItemBrandsQueryOptions
-  extends Omit<QueryOptions<ItemBrandsField>, 'fields' | 'sort'> {
+export interface ItemBrandsQueryOptions extends Omit<
+  QueryOptions<ItemBrandsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

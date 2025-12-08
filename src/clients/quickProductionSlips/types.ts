@@ -275,8 +275,10 @@ export type QuickProductionSlipsSortSpec =
  * });
  * ```
  */
-export interface QuickProductionSlipsQueryOptions
-  extends Omit<QueryOptions<QuickProductionSlipsField>, 'fields' | 'sort'> {
+export interface QuickProductionSlipsQueryOptions extends Omit<
+  QueryOptions<QuickProductionSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

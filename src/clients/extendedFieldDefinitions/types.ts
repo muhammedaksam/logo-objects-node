@@ -307,8 +307,10 @@ export type ExtendedFieldDefinitionsSortSpec =
  * });
  * ```
  */
-export interface ExtendedFieldDefinitionsQueryOptions
-  extends Omit<QueryOptions<ExtendedFieldDefinitionsField>, 'fields' | 'sort'> {
+export interface ExtendedFieldDefinitionsQueryOptions extends Omit<
+  QueryOptions<ExtendedFieldDefinitionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

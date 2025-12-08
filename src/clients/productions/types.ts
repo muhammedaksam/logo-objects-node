@@ -352,8 +352,10 @@ export type ProductionsSortSpec =
  * });
  * ```
  */
-export interface ProductionsQueryOptions
-  extends Omit<QueryOptions<ProductionsField>, 'fields' | 'sort'> {
+export interface ProductionsQueryOptions extends Omit<
+  QueryOptions<ProductionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

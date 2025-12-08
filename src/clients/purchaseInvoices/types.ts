@@ -4550,8 +4550,10 @@ export type PurchaseInvoicesSortSpec =
  * });
  * ```
  */
-export interface PurchaseInvoicesQueryOptions
-  extends Omit<QueryOptions<PurchaseInvoicesField>, 'fields' | 'sort'> {
+export interface PurchaseInvoicesQueryOptions extends Omit<
+  QueryOptions<PurchaseInvoicesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -109,8 +109,10 @@ export type GlaccountmldescriptionsSortSpec =
  * });
  * ```
  */
-export interface GlaccountmldescriptionsQueryOptions
-  extends Omit<QueryOptions<GlaccountmldescriptionsField>, 'fields' | 'sort'> {
+export interface GlaccountmldescriptionsQueryOptions extends Omit<
+  QueryOptions<GlaccountmldescriptionsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

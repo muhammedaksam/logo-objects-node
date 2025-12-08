@@ -5202,8 +5202,10 @@ export type SafeDepositSlipsSortSpec =
  * });
  * ```
  */
-export interface SafeDepositSlipsQueryOptions
-  extends Omit<QueryOptions<SafeDepositSlipsField>, 'fields' | 'sort'> {
+export interface SafeDepositSlipsQueryOptions extends Omit<
+  QueryOptions<SafeDepositSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

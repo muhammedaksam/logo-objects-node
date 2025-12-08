@@ -126,8 +126,10 @@ export type SalesConditionsForSlipsSortSpec =
  * });
  * ```
  */
-export interface SalesConditionsForSlipsQueryOptions
-  extends Omit<QueryOptions<SalesConditionsForSlipsField>, 'fields' | 'sort'> {
+export interface SalesConditionsForSlipsQueryOptions extends Omit<
+  QueryOptions<SalesConditionsForSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

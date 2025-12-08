@@ -170,8 +170,10 @@ export type CharacteristicSetsSortSpec =
  * });
  * ```
  */
-export interface CharacteristicSetsQueryOptions
-  extends Omit<QueryOptions<CharacteristicSetsField>, 'fields' | 'sort'> {
+export interface CharacteristicSetsQueryOptions extends Omit<
+  QueryOptions<CharacteristicSetsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

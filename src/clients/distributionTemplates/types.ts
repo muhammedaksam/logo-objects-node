@@ -169,8 +169,10 @@ export type DistributionTemplatesSortSpec =
  * });
  * ```
  */
-export interface DistributionTemplatesQueryOptions
-  extends Omit<QueryOptions<DistributionTemplatesField>, 'fields' | 'sort'> {
+export interface DistributionTemplatesQueryOptions extends Omit<
+  QueryOptions<DistributionTemplatesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

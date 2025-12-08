@@ -127,8 +127,10 @@ export type SpecialCodesSortSpec =
  * });
  * ```
  */
-export interface SpecialCodesQueryOptions
-  extends Omit<QueryOptions<SpecialCodesField>, 'fields' | 'sort'> {
+export interface SpecialCodesQueryOptions extends Omit<
+  QueryOptions<SpecialCodesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -623,8 +623,10 @@ export type ExportMovementSlipsSortSpec =
  * });
  * ```
  */
-export interface ExportMovementSlipsQueryOptions
-  extends Omit<QueryOptions<ExportMovementSlipsField>, 'fields' | 'sort'> {
+export interface ExportMovementSlipsQueryOptions extends Omit<
+  QueryOptions<ExportMovementSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

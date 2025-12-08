@@ -108,8 +108,10 @@ export type ExtendedFieldCategoriesSortSpec =
  * });
  * ```
  */
-export interface ExtendedFieldCategoriesQueryOptions
-  extends Omit<QueryOptions<ExtendedFieldCategoriesField>, 'fields' | 'sort'> {
+export interface ExtendedFieldCategoriesQueryOptions extends Omit<
+  QueryOptions<ExtendedFieldCategoriesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

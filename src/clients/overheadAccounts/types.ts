@@ -134,8 +134,10 @@ export type OverheadAccountsSortSpec =
  * });
  * ```
  */
-export interface OverheadAccountsQueryOptions
-  extends Omit<QueryOptions<OverheadAccountsField>, 'fields' | 'sort'> {
+export interface OverheadAccountsQueryOptions extends Omit<
+  QueryOptions<OverheadAccountsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

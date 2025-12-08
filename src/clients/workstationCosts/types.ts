@@ -130,8 +130,10 @@ export type WorkstationCostsSortSpec =
  * });
  * ```
  */
-export interface WorkstationCostsQueryOptions
-  extends Omit<QueryOptions<WorkstationCostsField>, 'fields' | 'sort'> {
+export interface WorkstationCostsQueryOptions extends Omit<
+  QueryOptions<WorkstationCostsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

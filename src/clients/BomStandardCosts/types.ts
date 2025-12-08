@@ -265,8 +265,10 @@ export type BomStandardCostsSortSpec =
  * });
  * ```
  */
-export interface BomStandardCostsQueryOptions
-  extends Omit<QueryOptions<BomStandardCostsField>, 'fields' | 'sort'> {
+export interface BomStandardCostsQueryOptions extends Omit<
+  QueryOptions<BomStandardCostsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -119,8 +119,10 @@ export type ProductionParametersSortSpec =
  * });
  * ```
  */
-export interface ProductionParametersQueryOptions
-  extends Omit<QueryOptions<ProductionParametersField>, 'fields' | 'sort'> {
+export interface ProductionParametersQueryOptions extends Omit<
+  QueryOptions<ProductionParametersField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

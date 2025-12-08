@@ -292,8 +292,10 @@ export type WorkstationsSortSpec =
  * });
  * ```
  */
-export interface WorkstationsQueryOptions
-  extends Omit<QueryOptions<WorkstationsField>, 'fields' | 'sort'> {
+export interface WorkstationsQueryOptions extends Omit<
+  QueryOptions<WorkstationsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

@@ -303,8 +303,10 @@ export type SalesItemPricesSortSpec =
  * });
  * ```
  */
-export interface SalesItemPricesQueryOptions
-  extends Omit<QueryOptions<SalesItemPricesField>, 'fields' | 'sort'> {
+export interface SalesItemPricesQueryOptions extends Omit<
+  QueryOptions<SalesItemPricesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

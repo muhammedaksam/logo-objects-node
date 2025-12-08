@@ -166,8 +166,10 @@ export type QccriteriaassignmentsSortSpec =
  * });
  * ```
  */
-export interface QccriteriaassignmentsQueryOptions
-  extends Omit<QueryOptions<QccriteriaassignmentsField>, 'fields' | 'sort'> {
+export interface QccriteriaassignmentsQueryOptions extends Omit<
+  QueryOptions<QccriteriaassignmentsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

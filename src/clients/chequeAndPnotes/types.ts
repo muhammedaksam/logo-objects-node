@@ -280,8 +280,10 @@ export type ChequeAndPnotesSortSpec =
  * });
  * ```
  */
-export interface ChequeAndPnotesQueryOptions
-  extends Omit<QueryOptions<ChequeAndPnotesField>, 'fields' | 'sort'> {
+export interface ChequeAndPnotesQueryOptions extends Omit<
+  QueryOptions<ChequeAndPnotesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

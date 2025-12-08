@@ -682,8 +682,10 @@ export type EngineeringChangesSortSpec =
  * });
  * ```
  */
-export interface EngineeringChangesQueryOptions
-  extends Omit<QueryOptions<EngineeringChangesField>, 'fields' | 'sort'> {
+export interface EngineeringChangesQueryOptions extends Omit<
+  QueryOptions<EngineeringChangesField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

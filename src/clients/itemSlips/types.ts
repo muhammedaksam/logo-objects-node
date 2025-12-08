@@ -1816,8 +1816,10 @@ export type ItemSlipsSortSpec =
  * });
  * ```
  */
-export interface ItemSlipsQueryOptions
-  extends Omit<QueryOptions<ItemSlipsField>, 'fields' | 'sort'> {
+export interface ItemSlipsQueryOptions extends Omit<
+  QueryOptions<ItemSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']

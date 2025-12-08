@@ -4835,8 +4835,10 @@ export type ImportOperationSlipsSortSpec =
  * });
  * ```
  */
-export interface ImportOperationSlipsQueryOptions
-  extends Omit<QueryOptions<ImportOperationSlipsField>, 'fields' | 'sort'> {
+export interface ImportOperationSlipsQueryOptions extends Omit<
+  QueryOptions<ImportOperationSlipsField>,
+  'fields' | 'sort'
+> {
   /**
    * Array of field names to include in the response
    * @example ['CODE', 'TITLE', 'STATUS']
