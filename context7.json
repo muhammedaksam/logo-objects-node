@@ -4,12 +4,7 @@
   "public_key": "pk_DwLynWqxOvim0fveT9Rn0",
   "projectTitle": "Logo Objects Node.js SDK",
   "description": "TypeScript client SDK and tools for Logo Objects REST Service API - comprehensive ERP integration for Logo business software",
-  "folders": [
-    "src/clients/",
-    "src/types/",
-    "src/utils/",
-    ".github/"
-  ],
+  "folders": ["src/clients/", "src/types/", "src/utils/", ".github/"],
   "excludeFolders": [
     "coverage/",
     "dist/",
