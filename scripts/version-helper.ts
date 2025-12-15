@@ -74,7 +74,20 @@ function updateContext7Json(newVersion: string, oldVersion: string): string | nu
 
         const updatedContent = JSON.stringify(context7Json, null, 2) + '\n';
         fs.writeFileSync(context7Path, updatedContent);
-        console.log(`✅ Updated context7.json: Added v${oldVersion} to previousVersions`);
+
+        // Format with Prettier if available
+        try {
+          execSync('pnpm prettier --write context7.json', {
+            cwd: projectRoot,
+            stdio: 'ignore',
+          });
+          console.log(
+            `✅ Updated context7.json: Added v${oldVersion} to previousVersions (formatted)`
+          );
+        } catch {
+          console.log(`✅ Updated context7.json: Added v${oldVersion} to previousVersions`);
+        }
+
         return updatedContent;
       } else {
         console.log(
