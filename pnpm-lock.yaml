@@ -10,7 +10,7 @@ importers:
     dependencies:
       axios:
         specifier: ^1.13.2
-        version: 1.13.2
+        version: 1.13.3
       chalk:
         specifier: ^5.6.2
         version: 5.6.2
@@ -41,7 +41,7 @@ importers:
         version: 8.53.0(eslint@9.39.2)(typescript@5.9.3)
       axios-mock-adapter:
         specifier: ^2.1.0
-        version: 2.1.0(axios@1.13.2)
+        version: 2.1.0(axios@1.13.3)
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -713,8 +713,8 @@ packages:
     peerDependencies:
       axios: '>= 0.17.0'
 
-  axios@1.13.2:
-    resolution: {integrity: sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==}
+  axios@1.13.3:
+    resolution: {integrity: sha512-ERT8kdX7DZjtUm7IitEyV7InTHAF42iJuMArIiDIV5YtPanJkgw4hw5Dyg9fh0mihdWNn1GKaeIWErfe56UQ1g==}
 
   babel-jest@30.2.0:
     resolution: {integrity: sha512-0YiBEOxWqKkSQWL9nNGGEgndoeL0ZpWrbLMNL5u/Kaxrli3Eaxlt3ZtIDktEvXt4L/R9r3ODr2zKwGM/2BjxVw==}
@@ -2693,13 +2693,13 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios-mock-adapter@2.1.0(axios@1.13.2):
+  axios-mock-adapter@2.1.0(axios@1.13.3):
     dependencies:
-      axios: 1.13.2
+      axios: 1.13.3
       fast-deep-equal: 3.1.3
       is-buffer: 2.0.5
 
-  axios@1.13.2:
+  axios@1.13.3:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.5
