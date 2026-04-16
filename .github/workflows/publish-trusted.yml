@@ -25,11 +25,6 @@ jobs:
           package-manager-cache: false
           registry-url: 'https://registry.npmjs.org'
 
-      # Ensure npm 11.5.1 or later is installed for trusted publishing support
-      # Must run BEFORE pnpm global install to avoid corrupting npm's module tree
-      - name: Update npm to latest version
-        run: npm install -g npm@latest
-
       - name: Install pnpm
         run: |
           npm install -g pnpm@10.23.0
