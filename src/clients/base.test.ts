@@ -1,7 +1,14 @@
 import axios from 'axios';
 import { BaseApiClient } from './base';
 
-jest.mock('axios');
+jest.mock('axios', () => {
+  const mockAxiosFn = jest.fn();
+  (mockAxiosFn as any).create = jest.fn();
+  return {
+    __esModule: true,
+    default: mockAxiosFn,
+  };
+});
 
 describe('BaseApiClient', () => {
   beforeEach(() => {
@@ -24,14 +31,14 @@ describe('BaseApiClient', () => {
       grantTypeBasicAuth: 'basicauth123',
     });
 
-    const mockAxios = axios as unknown as jest.Mock;
-    mockAxios.mockRejectedValue(new Error('Network error'));
+    const mockedAxios = axios as unknown as jest.Mock;
+    mockedAxios.mockRejectedValueOnce(new Error('Network error'));
 
-    // We can call getAccessToken by accessing it as any
     await expect((client as any).getAccessToken()).rejects.toThrow(
       'Failed to retrieve access token: Network error'
     );
 
+    mockedAxios.mockRejectedValueOnce(new Error('Network error'));
     try {
       await (client as any).getAccessToken();
     } catch (e: any) {
