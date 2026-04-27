@@ -56,7 +56,9 @@ export class BaseApiClient {
       const response = await axios(tokenConfig);
       return response.data.access_token;
     } catch (error) {
-      throw new Error(`Failed to retrieve access token: ${(error as Error).message}`);
+      throw new Error(`Failed to retrieve access token: ${(error as Error).message}`, {
+        cause: error,
+      });
     }
   }
 
