@@ -54,7 +54,6 @@
     "@typescript-eslint/eslint-plugin": "^8.59.4",
     "@typescript-eslint/parser": "^8.59.4",
     "axios-mock-adapter": "^2.1.0",
-    "dotenv": "^17.4.2",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
@@ -65,11 +64,7 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
-    "axios": "^1.16.1",
-    "chalk": "^5.6.2",
-    "commander": "^15.0.0",
-    "fs-extra": "^11.3.5",
-    "yaml": "^2.9.0"
+    "axios": "^1.16.1"
   },
   "engines": {
     "node": ">=18",
