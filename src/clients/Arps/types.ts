@@ -1229,10 +1229,7 @@ export type ArpsField =
  * Type-safe sort specification for Arps queries
  */
 export type ArpsSortSpec =
-  | [ArpsField]
-  | [ArpsField, 'asc' | 'desc']
-  | [ArpsField[], 'asc' | 'desc']
-  | [ArpsField[]];
+  [ArpsField] | [ArpsField, 'asc' | 'desc'] | [ArpsField[], 'asc' | 'desc'] | [ArpsField[]];
 
 /**
  * Type-safe query options for Arps entities

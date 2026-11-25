@@ -37,10 +37,7 @@ export type RevokeField =
  * Type-safe sort specification for Revoke queries
  */
 export type RevokeSortSpec =
-  | [RevokeField]
-  | [RevokeField, 'asc' | 'desc']
-  | [RevokeField[], 'asc' | 'desc']
-  | [RevokeField[]];
+  [RevokeField] | [RevokeField, 'asc' | 'desc'] | [RevokeField[], 'asc' | 'desc'] | [RevokeField[]];
 
 /**
  * Type-safe query options for Revoke entities

@@ -5,7 +5,14 @@ module.exports = {
   testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
   setupFilesAfterEnv: ['<rootDir>/src/tests/setup.ts'],
   transform: {
-    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.ts$': [
+      'ts-jest',
+      {
+        tsconfig: {
+          isolatedModules: true,
+        },
+      },
+    ],
   },
   collectCoverageFrom: [
     // Only include files that we actually test
@@ -54,6 +61,8 @@ module.exports = {
   bail: false,
   // Limit parallel workers to prevent system freeze (default uses all CPU cores)
   maxWorkers: process.env.CI ? '100%' : 2,
+  // Recycle idle workers to prevent V8 heap OOM across large generated test suites
+  workerIdleMemoryLimit: '512MB',
   // Only run tests that exist
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/coverage/'],
 };

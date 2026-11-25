@@ -32,10 +32,7 @@ export type PingField =
  * Type-safe sort specification for Ping queries
  */
 export type PingSortSpec =
-  | [PingField]
-  | [PingField, 'asc' | 'desc']
-  | [PingField[], 'asc' | 'desc']
-  | [PingField[]];
+  [PingField] | [PingField, 'asc' | 'desc'] | [PingField[], 'asc' | 'desc'] | [PingField[]];
 
 /**
  * Type-safe query options for Ping entities

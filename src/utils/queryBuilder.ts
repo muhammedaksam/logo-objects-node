@@ -80,23 +80,13 @@ export type BooleanFieldValue = boolean | BooleanQueryOperators;
  * Used in index signatures for SearchCriteria interfaces
  */
 export type AllFieldValues =
-  | StringFieldValue
-  | NumberFieldValue
-  | DateFieldValue
-  | BooleanFieldValue
-  | undefined;
+  StringFieldValue | NumberFieldValue | DateFieldValue | BooleanFieldValue | undefined;
 
 /**
  * Query value types that can be used in search criteria
  */
 export type QueryValue =
-  | string
-  | number
-  | boolean
-  | string[]
-  | number[]
-  | QueryOperators
-  | undefined;
+  string | number | boolean | string[] | number[] | QueryOperators | undefined;
 
 /**
  * Available query operators

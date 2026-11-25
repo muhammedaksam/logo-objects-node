@@ -129,10 +129,7 @@ export type ShiftsField =
  * Type-safe sort specification for Shifts queries
  */
 export type ShiftsSortSpec =
-  | [ShiftsField]
-  | [ShiftsField, 'asc' | 'desc']
-  | [ShiftsField[], 'asc' | 'desc']
-  | [ShiftsField[]];
+  [ShiftsField] | [ShiftsField, 'asc' | 'desc'] | [ShiftsField[], 'asc' | 'desc'] | [ShiftsField[]];
 
 /**
  * Type-safe query options for Shifts entities

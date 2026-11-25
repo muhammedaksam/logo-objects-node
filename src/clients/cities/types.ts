@@ -68,10 +68,7 @@ export type CitiesField =
  * Type-safe sort specification for Cities queries
  */
 export type CitiesSortSpec =
-  | [CitiesField]
-  | [CitiesField, 'asc' | 'desc']
-  | [CitiesField[], 'asc' | 'desc']
-  | [CitiesField[]];
+  [CitiesField] | [CitiesField, 'asc' | 'desc'] | [CitiesField[], 'asc' | 'desc'] | [CitiesField[]];
 
 /**
  * Type-safe query options for Cities entities

@@ -659,10 +659,7 @@ export type BomsField =
  * Type-safe sort specification for Boms queries
  */
 export type BomsSortSpec =
-  | [BomsField]
-  | [BomsField, 'asc' | 'desc']
-  | [BomsField[], 'asc' | 'desc']
-  | [BomsField[]];
+  [BomsField] | [BomsField, 'asc' | 'desc'] | [BomsField[], 'asc' | 'desc'] | [BomsField[]];
 
 /**
  * Type-safe query options for Boms entities
