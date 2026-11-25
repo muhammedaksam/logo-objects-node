@@ -32,10 +32,7 @@ export type DbinfoField =
  * Type-safe sort specification for Dbinfo queries
  */
 export type DbinfoSortSpec =
-  | [DbinfoField]
-  | [DbinfoField, 'asc' | 'desc']
-  | [DbinfoField[], 'asc' | 'desc']
-  | [DbinfoField[]];
+  [DbinfoField] | [DbinfoField, 'asc' | 'desc'] | [DbinfoField[], 'asc' | 'desc'] | [DbinfoField[]];
 
 /**
  * Type-safe query options for Dbinfo entities

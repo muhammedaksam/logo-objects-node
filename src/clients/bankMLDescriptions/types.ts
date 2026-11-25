@@ -57,13 +57,7 @@ export interface BankMLDescriptions extends BaseEntity {
  * Union type of all BankMLDescriptions field names for type-safe field selection and sorting
  */
 export type BankMLDescriptionsField =
-  | 'LOGICALREF'
-  | 'DOC_ID'
-  | 'DOCREF'
-  | 'FIELD_ID'
-  | 'LANG_ID'
-  | 'FIELD_CONT'
-  | 'DOC_CODE';
+  'LOGICALREF' | 'DOC_ID' | 'DOCREF' | 'FIELD_ID' | 'LANG_ID' | 'FIELD_CONT' | 'DOC_CODE';
 
 /**
  * Type-safe sort specification for BankMLDescriptions queries

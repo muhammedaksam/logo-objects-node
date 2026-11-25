@@ -32,10 +32,7 @@ export type CapiField =
  * Type-safe sort specification for Capi queries
  */
 export type CapiSortSpec =
-  | [CapiField]
-  | [CapiField, 'asc' | 'desc']
-  | [CapiField[], 'asc' | 'desc']
-  | [CapiField[]];
+  [CapiField] | [CapiField, 'asc' | 'desc'] | [CapiField[], 'asc' | 'desc'] | [CapiField[]];
 
 /**
  * Type-safe query options for Capi entities

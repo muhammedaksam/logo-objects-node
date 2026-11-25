@@ -57,13 +57,7 @@ export interface Glaccountmldescriptions extends BaseEntity {
  * Union type of all Glaccountmldescriptions field names for type-safe field selection and sorting
  */
 export type GlaccountmldescriptionsField =
-  | 'LOGICALREF'
-  | 'DOC_ID'
-  | 'DOCREF'
-  | 'FIELD_ID'
-  | 'LANG_ID'
-  | 'FIELD_CONT'
-  | 'DOC_CODE';
+  'LOGICALREF' | 'DOC_ID' | 'DOCREF' | 'FIELD_ID' | 'LANG_ID' | 'FIELD_CONT' | 'DOC_CODE';
 
 /**
  * Type-safe sort specification for Glaccountmldescriptions queries

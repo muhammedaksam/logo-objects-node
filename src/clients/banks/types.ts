@@ -244,10 +244,7 @@ export type BanksField =
  * Type-safe sort specification for Banks queries
  */
 export type BanksSortSpec =
-  | [BanksField]
-  | [BanksField, 'asc' | 'desc']
-  | [BanksField[], 'asc' | 'desc']
-  | [BanksField[]];
+  [BanksField] | [BanksField, 'asc' | 'desc'] | [BanksField[], 'asc' | 'desc'] | [BanksField[]];
 
 /**
  * Type-safe query options for Banks entities

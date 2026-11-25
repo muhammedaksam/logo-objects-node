@@ -72,10 +72,7 @@ export type TownsField =
  * Type-safe sort specification for Towns queries
  */
 export type TownsSortSpec =
-  | [TownsField]
-  | [TownsField, 'asc' | 'desc']
-  | [TownsField[], 'asc' | 'desc']
-  | [TownsField[]];
+  [TownsField] | [TownsField, 'asc' | 'desc'] | [TownsField[], 'asc' | 'desc'] | [TownsField[]];
 
 /**
  * Type-safe query options for Towns entities

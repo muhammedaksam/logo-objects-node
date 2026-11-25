@@ -55,12 +55,7 @@ export interface PostCodes extends BaseEntity {
  * Union type of all PostCodes field names for type-safe field selection and sorting
  */
 export type PostCodesField =
-  | 'INTERNAL_REFERENCE'
-  | 'INFO_COUNTRY'
-  | 'INFO_CITY'
-  | 'CODE'
-  | 'COUNTRYCODE'
-  | 'CITYCODE';
+  'INTERNAL_REFERENCE' | 'INFO_COUNTRY' | 'INFO_CITY' | 'CODE' | 'COUNTRYCODE' | 'CITYCODE';
 
 /**
  * Type-safe sort specification for PostCodes queries

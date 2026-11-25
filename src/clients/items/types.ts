@@ -1296,10 +1296,7 @@ export type ItemsField =
  * Type-safe sort specification for Items queries
  */
 export type ItemsSortSpec =
-  | [ItemsField]
-  | [ItemsField, 'asc' | 'desc']
-  | [ItemsField[], 'asc' | 'desc']
-  | [ItemsField[]];
+  [ItemsField] | [ItemsField, 'asc' | 'desc'] | [ItemsField[], 'asc' | 'desc'] | [ItemsField[]];
 
 /**
  * Type-safe query options for Items entities

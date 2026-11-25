@@ -509,10 +509,7 @@ export type SysField =
  * Type-safe sort specification for Sys queries
  */
 export type SysSortSpec =
-  | [SysField]
-  | [SysField, 'asc' | 'desc']
-  | [SysField[], 'asc' | 'desc']
-  | [SysField[]];
+  [SysField] | [SysField, 'asc' | 'desc'] | [SysField[], 'asc' | 'desc'] | [SysField[]];
 
 /**
  * Type-safe query options for Sys entities

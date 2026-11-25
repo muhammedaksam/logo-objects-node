@@ -56,13 +56,7 @@ export interface SalesCategories extends BaseEntity {
  * Union type of all SalesCategories field names for type-safe field selection and sorting
  */
 export type SalesCategoriesField =
-  | 'INTERNAL_REFERENCE'
-  | 'CATEGID'
-  | 'LINENO'
-  | 'TAG'
-  | 'CATDESC'
-  | 'CUSTOM'
-  | 'RECORDID';
+  'INTERNAL_REFERENCE' | 'CATEGID' | 'LINENO' | 'TAG' | 'CATDESC' | 'CUSTOM' | 'RECORDID';
 
 /**
  * Type-safe sort specification for SalesCategories queries
